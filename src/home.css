@@ -1,0 +1,36 @@
+.video-list-container {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 1rem;
+  }
+  
+  .video-list-item {
+    max-width: 20rem;
+  }
+  
+  .container16x9 {
+    position: relative;
+    padding-top: 56.25%;
+    min-width: 20rem;
+  }
+  
+  .video-header {
+    cursor: pointer;
+  }
+  
+  .responsive-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .video-header {
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0.7rem 0;
+  }
+  

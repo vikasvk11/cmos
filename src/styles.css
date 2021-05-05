@@ -1,0 +1,91 @@
+@import url("https://alphacss.netlify.app/alpha.css");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #e4e6eb;
+}
+
+body {
+  background-color: #18191a;
+}
+
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.6rem;
+  background-color: #242526;
+}
+
+.main-nav-header_1 {
+  color: #3ca1cd;
+  flex: 1 1;
+  cursor: pointer;
+}
+
+.main-nav-list_1 {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex: 1 1;
+}
+
+.main-nav-list_1 > li {
+  position: relative;
+}
+
+.main-nav-list_1 > li:hover::before {
+  content: "";
+  background-color: #e4e6eb13;
+  border-radius: 50%;
+  display: inline-block;
+  position: absolute;
+  width: 2.5rem;
+  height: 2.5rem;
+  transform: translate(-20%, -20%);
+  top: 0;
+  left: 0;
+}
+
+li {
+  list-style: none;
+}
+
+.nav-list-item {
+  cursor: pointer;
+}
+
+.btn-primary-outline:hover {
+  color: #3ca1cd;
+  background-color: #3ca2cd21;
+}
+
+.liked-header {
+  font-size: 1.5rem;
+  margin: 1rem;
+}
+
+.playlist-header {
+  font-size: 1.5rem;
+  margin: 1rem;
+  font-weight: 500;
+  color: #3ca1cd;
+}
+
+.playlist-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 2rem;
+}
+
+.playlist-delete-btn {
+  transform: scale(0.7);
+}

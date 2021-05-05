@@ -1,0 +1,78 @@
+.videopage-container {
+    max-width: 700px;
+    max-height: 450px;
+  }
+  
+  .video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+  }
+  
+  .videopage-header {
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin: 0.5rem 0;
+  }
+  
+  .modal-header {
+    font-weight: 500;
+    font-size: 1.1rem;
+  }
+  
+  .modal-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e4e6eb7c;
+    padding-bottom: 0.5rem;
+  }
+  
+  .modal {
+    background-color: #242526;
+    border: none;
+    box-shadow: none;
+    width: 15rem;
+    height: 20rem;
+    position: relative;
+  }
+  
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .modal-playlist-title {
+    margin: 0.5rem 0;
+  }
+  
+  .modal-footer {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    margin: 0.5rem 0;
+    height: 1.5rem;
+    align-items: center;
+    justify-content: space-around;
+    width: 93%;
+  }
+  
+  .modal-btn {
+    background-color: #e4e6eb1a;
+    transform: scale(0.6);
+    padding: 0.5rem 0.5rem;
+  }
+  
+  .modal-btn:hover {
+    background-color: #e4e6eb5d;
+  }
+  
+  .modal-input {
+    background-color: #383a3b;
+    box-shadow: none;
+    border: none;
+    height: 100%;
+  }
+  
