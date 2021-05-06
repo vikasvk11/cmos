@@ -1,6 +1,7 @@
 .videopage-container {
     max-width: 700px;
     max-height: 450px;
+    margin-top: 4rem;
   }
   
   .video-wrapper {
@@ -9,9 +10,9 @@
   }
   
   .videopage-header {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: 500;
-    margin: 0.5rem 0;
+    margin: 0.5rem 0.5rem;
   }
   
   .modal-header {

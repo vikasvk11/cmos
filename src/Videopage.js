@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { data } from "./Home";
-import { usePlaylist } from "./PlaylistProvider";
+import { usePlaylist } from "./Playlist/PlaylistProvider.js";
 import "./videopage.css";
 
 export function Videopage() {

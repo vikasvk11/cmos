@@ -67,8 +67,8 @@ export function PlaylistProvider({ children }) {
     playlists: [
       {
         id: v4(),
-        name: "test Playlist",
-        videos: ["Bsoth9BhS9w", "Qhaz36TZG5Y"]
+        name: "Playlist 1",
+        videos: ["QHDhSidFhcQ", "e6HZPmSlS5c"]
       }
     ]
   });

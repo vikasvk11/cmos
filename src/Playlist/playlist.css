@@ -1,0 +1,16 @@
+.video-list-container.liked,  .video-list-container.playlist{
+    margin: 1rem 1rem 1rem 1rem;
+}
+
+.liked-header {
+    font-size: 1.5rem;
+    margin: 4rem 1rem 1rem 1rem;
+  }
+
+  
+.playlist-header {
+    font-size: 1.2rem;
+    margin: 1rem;
+    font-weight: 500;
+    color: #3ca1cd;
+  }

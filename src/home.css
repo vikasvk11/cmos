@@ -2,7 +2,9 @@
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
-    margin: 1rem;
+    margin: 4rem 1rem 1rem 1rem;
+    align-items: center;
+    justify-content: center;
   }
   
   .video-list-item {

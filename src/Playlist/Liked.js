@@ -1,8 +1,9 @@
 import { usePlaylist } from "./PlaylistProvider";
 import { useNavigate } from "react-router-dom";
-import { data } from "./Home";
-import "./styles.css";
-import "./home.css";
+import { data } from "../Home";
+import "../styles.css";
+import "../home.css";
+import "./playlist.css";
 
 export function Liked() {
   const { playlistState, playlistDispatch } = usePlaylist();
@@ -13,7 +14,7 @@ export function Liked() {
   return (
     <>
       <h1 className="liked-header">Liked Videos</h1>
-      <ul className="video-list-container">
+      <ul className="video-list-container  liked">
         {[...liked.map((item) => data.find((el) => el.id === item))].map(
           (item, index) => {
             return (

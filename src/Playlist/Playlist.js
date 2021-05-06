@@ -1,8 +1,9 @@
 import { usePlaylist } from "./PlaylistProvider";
-import { data } from "./Home";
+import { data } from "../Home";
 import { useNavigate } from "react-router-dom";
-import "./styles.css";
-import "./home.css";
+import "../styles.css";
+import "../home.css";
+import "./playlist.css";
 
 export function Playlist() {
   const { playlistState, playlistDispatch } = usePlaylist();
@@ -27,7 +28,7 @@ export function Playlist() {
                 <span class="material-icons">delete_sweep</span>
               </button>
             </div>
-            <ul className="video-list-container">
+            <ul className="video-list-container playlist">
               {[...videos.map((item) => data.find((el) => el.id === item))].map(
                 (el) => {
                   return (

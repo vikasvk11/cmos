@@ -22,6 +22,10 @@ body {
   justify-content: space-between;
   padding: 0.6rem;
   background-color: #242526;
+  position: fixed;
+  top:0;
+  z-index: 1;
+  width: 100%;
 }
 
 .main-nav-header_1 {
@@ -65,18 +69,6 @@ li {
 .btn-primary-outline:hover {
   color: #3ca1cd;
   background-color: #3ca2cd21;
-}
-
-.liked-header {
-  font-size: 1.5rem;
-  margin: 1rem;
-}
-
-.playlist-header {
-  font-size: 1.5rem;
-  margin: 1rem;
-  font-weight: 500;
-  color: #3ca1cd;
 }
 
 .playlist-head {
