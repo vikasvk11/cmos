@@ -56,7 +56,9 @@ export function Home() {
     <ul className="video-list-container">
       {data.map((item, index) => {
         return (
-          <li key={index} className="video-list-item">
+          <li key={index}  
+            onClick={() => navigate(`/videos/${item.id}`)} 
+            className="video-list-item">
             <div>
               <div className="container16x9">
                 <img
@@ -66,7 +68,7 @@ export function Home() {
                 />
               </div>
               <h1
-                onClick={() => navigate(`/videos/${item.id}`)}
+               
                 className="video-header"
               >
                 {item.title}

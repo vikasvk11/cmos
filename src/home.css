@@ -3,12 +3,13 @@
     gap: 10px;
     flex-wrap: wrap;
     margin: 4rem 1rem 1rem 1rem;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
   }
   
   .video-list-item {
     max-width: 20rem;
+    cursor: pointer;
   }
   
   .container16x9 {

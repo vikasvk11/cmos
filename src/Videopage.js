@@ -46,16 +46,16 @@ export function Videopage() {
           }
         >
           {liked.includes(id) ? (
-            <span class="material-icons">thumb_up_alt</span>
+            <span className="material-icons">thumb_up_alt</span>
           ) : (
-            <span class="material-icons">thumb_up_off_alt</span>
+            <span className="material-icons">thumb_up_off_alt</span>
           )}
         </button>
         <button
           className="btn-primary-outline"
           onClick={() => setModalState(true)}
         >
-          <span class="material-icons">playlist_add</span>
+          <span className="material-icons">playlist_add</span>
         </button>
       </div>
 
@@ -109,7 +109,7 @@ export function Videopage() {
               className="btn-primary modal-btn"
               onClick={createPlaylistBtn}
             >
-              <span class="material-icons">add</span>
+              <span className="material-icons">add</span>
             </button>
           </div>
         </div>
