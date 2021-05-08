@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
-import { PlaylistProvider } from "./Playlist/PlaylistProvider";
+import { PlaylistProvider } from "./Context/PlaylistProvider";
 
 import App from "./App";
 

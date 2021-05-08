@@ -1,8 +1,8 @@
 import { NavLink, Route, Routes } from "react-router-dom";
-import { Home } from "./Home";
-import { Liked } from "./Playlist/Liked";
-import { Playlist } from "./Playlist/Playlist";
-import { Videopage } from "./Videopage";
+import { Home } from "./Pages/Home/Home";
+import { Liked } from "./Pages/Liked";
+import { Playlist } from "./Pages/Playlist/Playlist";
+import { Videopage } from "./Pages/Videopage/Videopage";
 
 export function Router() {
   return (
@@ -11,7 +11,7 @@ export function Router() {
         <Route path="/" element={<Home />} />
         <Route path="/liked" element={<Liked />} />
         <Route path="/playlists" element={<Playlist />} />
-        <Route path="/videos/:vid" element={<Videopage />} />
+        <Route path="/videos/:videoId" element={<Videopage />} />
       </Routes>
     </>
   );

@@ -1,13 +1,13 @@
 import { useParams } from "react-router-dom";
 import { useState } from "react";
-import { data } from "./Home";
-import { usePlaylist } from "./Playlist/PlaylistProvider.js";
+import { data } from "../../ConstantValues";
+import { usePlaylist } from "../../Context/PlaylistProvider.js";
 import "./videopage.css";
 
 export function Videopage() {
-  const { vid } = useParams();
+  const { videoId } = useParams();
   const [input, setInputState] = useState("");
-  const { id, title } = data.find((item) => item.id === vid);
+  const { id, title } = data.find((item) => item.id === videoId);
   const { playlistState, playlistDispatch } = usePlaylist();
   const [modalState, setModalState] = useState(false);
   const { liked, playlists } = playlistState;
@@ -28,7 +28,7 @@ export function Videopage() {
         <div className="video-wrapper">
           <iframe
             className="video"
-            src={`https://www.youtube.com/embed/${vid}`}
+            src={`https://www.youtube.com/embed/${videoId}`}
             title="YouTube video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -80,16 +80,16 @@ export function Videopage() {
                     name="playlist"
                     onChange={() =>
                       playlistDispatch({
-                        type: item.videos.includes(vid)
+                        type: item.videos.includes(videoId)
                           ? "REMOVE_FROM_PLAYLIST"
                           : "ADD_TO_PLAYLIST",
                         payload: {
                           playlistId: item.id,
-                          videoId: vid
+                          videoId: videoId
                         }
                       })
                     }
-                    checked={item.videos.includes(vid)}
+                    checked={item.videos.includes(videoId)}
                   />{" "}
                   {item.name}
                 </label>

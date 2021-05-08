@@ -1,8 +1,8 @@
-import { usePlaylist } from "./PlaylistProvider";
-import { data } from "../Home";
+import { usePlaylist } from "../../Context/PlaylistProvider";
+import { data } from "../../ConstantValues";
 import { useNavigate } from "react-router-dom";
-import "../styles.css";
-import "../home.css";
+import "../../styles.css";
+import "../Home/home.css";
 import "./playlist.css";
 
 export function Playlist() {
@@ -25,7 +25,7 @@ export function Playlist() {
                   playlistDispatch({ type: "DELETE_PLAYLIST", payload: id })
                 }
               >
-                <span class="material-icons">delete_sweep</span>
+                <span className="material-icons">delete_sweep</span>
               </button>
             </div>
             <ul className="video-list-container playlist">

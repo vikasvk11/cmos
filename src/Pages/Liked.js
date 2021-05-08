@@ -1,9 +1,9 @@
-import { usePlaylist } from "./PlaylistProvider";
+import { usePlaylist } from "../Context/PlaylistProvider";
 import { useNavigate } from "react-router-dom";
-import { data } from "../Home";
+import { data } from "../ConstantValues";
 import "../styles.css";
-import "../home.css";
-import "./playlist.css";
+import "./Home/home.css";
+import "./Playlist/playlist.css";
 
 export function Liked() {
   const { playlistState, playlistDispatch } = usePlaylist();

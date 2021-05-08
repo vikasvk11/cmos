@@ -1,19 +1,25 @@
 import { createContext, useReducer, useContext } from "react";
 import { v4 } from "uuid";
+import {ADD_TO_LIKED, 
+        REMOVE_FROM_LIKED,
+        CREATE_PLAYLIST,
+        DELETE_PLAYLIST,
+        ADD_TO_PLAYLIST,
+        REMOVE_FROM_PLAYLIST} from "../ConstantValues";
 
 const PlaylistContext = createContext();
 
 export function PlaylistProvider({ children }) {
   function playlistReducer(state, action) {
     switch (action.type) {
-      case "ADD_TO_LIKED":
+      case ADD_TO_LIKED:
         return { ...state, liked: [...state.liked, action.payload] };
-      case "REMOVE_FROM_LIKED":
+      case REMOVE_FROM_LIKED:
         return {
           ...state,
           liked: state.liked.filter((el) => el !== action.payload)
         };
-      case "CREATE_PLAYLIST":
+      case CREATE_PLAYLIST:
         return {
           ...state,
           playlists: [
@@ -21,12 +27,12 @@ export function PlaylistProvider({ children }) {
             { id: v4(), name: action.payload, videos: [] }
           ]
         };
-      case "DELETE_PLAYLIST":
+      case DELETE_PLAYLIST:
         return {
           ...state,
           playlists: state.playlists.filter((el) => el.id !== action.payload)
         };
-      case "ADD_TO_PLAYLIST":
+      case ADD_TO_PLAYLIST:
         let pl = state.playlists.find(
           (item) => item.id === action.payload.playlistId
         );
@@ -41,7 +47,7 @@ export function PlaylistProvider({ children }) {
           ...state,
           playlists: [...pls, pl]
         };
-      case "REMOVE_FROM_PLAYLIST":
+      case REMOVE_FROM_PLAYLIST:
         let plr = state.playlists.find(
           (item) => item.id === action.payload.playlistId
         );
