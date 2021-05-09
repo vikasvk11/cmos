@@ -1,8 +1,28 @@
+import "../styles.css";
+import { useNavigate } from "react-router-dom";
+
 export function PivotBar() {
+    const navigate = useNavigate();
     return (
         <>
-        <div>
-        <h1>Pivot Bar Component</h1>
+        <div className="pivotbar-container">
+        <ul className="pivot-list">
+            <li onClick={() => navigate("/liked")} className="nav-list-item">
+              <span className="material-icons">thumb_up</span>
+            </li>
+            <li
+              onClick={() => navigate("/playlists")}
+              className="nav-list-item"
+            >
+              <span className="material-icons">playlist_play</span>
+            </li>
+            <li
+              onClick={() => navigate("/history")}
+              className="nav-list-item"
+            >
+              <span className="material-icons">history</span>
+            </li>
+          </ul>
         </div>
         </>
     );

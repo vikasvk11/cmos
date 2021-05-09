@@ -14,7 +14,9 @@ body {
 
 .App {
   font-family: sans-serif;
-  text-align: center;
+  /* text-align: center; */
+  width: 100%;
+  height: auto;
 }
 
 .main-nav {
@@ -26,6 +28,7 @@ body {
   top:0;
   z-index: 1;
   width: 100%;
+  border-bottom: 0.5px solid rgb(100, 100, 100);
 }
 
 .main-nav-header_1 {
@@ -34,11 +37,16 @@ body {
   cursor: pointer;
 }
 
-.main-nav-list_1 {
+.main-nav-list_1, .pivot-list {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   flex: 1 1;
+}
+
+.flex-end {
+  justify-content: flex-end;
+  gap: 30px;
 }
 
 .main-nav-list_1 > li {
@@ -80,4 +88,56 @@ li {
 
 .playlist-delete-btn {
   transform: scale(0.7);
+}
+
+.pivotbar-container {
+  position: fixed;
+  z-index: 1;
+  bottom: 0;
+  width: 100%;
+  background-color: #242526;
+  padding: 0.5rem;
+  border-top: 0.5px solid rgb(100, 100, 100);
+}
+
+.main-nav-search {
+  background-color: #3c3d3f;
+  border: 1px solid rgb(100, 100, 100);
+  border-radius: 1rem;
+  padding: 0.4rem;
+  flex: 1 1;
+  display: none;
+}
+
+.main-nav-search:focus {
+  outline: 1px solid rgb(153, 153, 153);
+}
+
+.mg_1 {
+  margin: 1rem;
+}
+
+@media only screen and (min-width: 992px) {
+
+  .pivotbar-container {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 650px) {
+  .main-nav-search {
+    display: block;
+  }
+
+  .main-nav-list_1 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0;
+  }
+
+  .nav-list-item {
+    padding-left: 2rem;
+  }
+  
 }

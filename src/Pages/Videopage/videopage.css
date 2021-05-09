@@ -1,7 +1,6 @@
 .videopage-container {
-    max-width: 700px;
-    max-height: 450px;
-    margin-top: 4rem;
+    max-width: 900px;
+    margin-top: 3.4rem;
   }
   
   .video-wrapper {
@@ -75,5 +74,17 @@
     box-shadow: none;
     border: none;
     height: 100%;
+  }
+
+  @media only screen and (min-width: 992px) {
+
+    .videopage-main-container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .videopage-container_main {
+      flex: 82%;
+    }
   }
   

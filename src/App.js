@@ -10,9 +10,11 @@ export default function App() {
     <>
       <div className="App">
         <NavBar/>
-        <PivotBar />
+        <Router />
+        <PivotBar/>
+        
       </div>
-      <Router />
+     
     </>
   );
 }
