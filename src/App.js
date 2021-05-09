@@ -12,9 +12,7 @@ export default function App() {
         <NavBar/>
         <Router />
         <PivotBar/>
-        
       </div>
-     
     </>
   );
 }
