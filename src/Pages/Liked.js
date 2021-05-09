@@ -4,6 +4,7 @@ import { data } from "../ConstantValues";
 import "../styles.css";
 import "./Home/home.css";
 import "./Playlist/playlist.css";
+import { MenuList } from "../Components/MenuList";
 
 export function Liked() {
   const { playlistState, playlistDispatch } = usePlaylist();
@@ -13,6 +14,9 @@ export function Liked() {
 
   return (
     <>
+    <div className="playlist-page-container">
+      <MenuList/>
+      <div className="playlist-page">
       <h1 className="liked-header">Liked Videos</h1>
       <ul className="video-list-container  liked">
         {[...liked.map((item) => data.find((el) => el.id === item))].map(
@@ -39,6 +43,8 @@ export function Liked() {
           }
         )}
       </ul>
+      </div>
+      </div>
     </>
   );
 }

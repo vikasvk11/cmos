@@ -53,19 +53,6 @@ body {
   position: relative;
 }
 
-.main-nav-list_1 > li:hover::before {
-  content: "";
-  background-color: #e4e6eb13;
-  border-radius: 50%;
-  display: inline-block;
-  position: absolute;
-  width: 2.5rem;
-  height: 2.5rem;
-  transform: translate(-20%, -20%);
-  top: 0;
-  left: 0;
-}
-
 li {
   list-style: none;
 }

@@ -15,7 +15,7 @@ export function MenuList() {
           Liked Videos
         </li>
         <li className="menu-list-item" onClick={() => navigate("/playlists")}>
-        <span class="material-icons">playlist_play</span>
+        <span className="material-icons">playlist_play</span>
           Playlist
         </li>
         <li className="menu-list-item" onClick={() => navigate("/history")}>

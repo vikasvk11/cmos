@@ -1,5 +1,6 @@
 .video-list-container.liked,  .video-list-container.playlist{
     margin: 1rem 1rem 1rem 1rem;
+    justify-content: flex-start;
 }
 
 .liked-header {
@@ -7,10 +8,34 @@
     margin: 4rem 1rem 1rem 1rem;
   }
 
+  .playlist-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 2rem;
+  }
   
+  .playlist-delete-btn {
+    transform: scale(0.7);
+    margin: 0 1rem;
+  }
+
 .playlist-header {
     font-size: 1.2rem;
     margin: 1rem;
     font-weight: 500;
     color: #3ca1cd;
   }
+
+  @media only screen and (min-width: 992px) {
+
+  .playlist-page-container {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  .playlist-page {
+    flex: 82%;
+  }
+
+}

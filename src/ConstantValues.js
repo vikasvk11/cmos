@@ -42,6 +42,42 @@ export const data =  [
     {
       id: "458I2hkaqjk",
       title: "In Camera Transitions: A Masterclass."
+    },
+    {
+      id: "g0C3Q7bjfMs",
+      title: "6 creative ways to use a gimbal"
+    },
+    {
+      id: "f3lv65BFmaA",
+      title: "Johnny FPV x Beautiful Destinations - Turkey"
+    },
+    {
+      id: "z7yqtW4Isec",
+      title: "Watchtower of Turkey"
+    },
+    {
+      id: "ua_I-OtYQ0c",
+      title: "My 2 0 1 9"
+    },
+    {
+      id: "Hls3Tp7JS8E",
+      title: "LEARN PREMIERE PRO IN 20 MINUTES ! - Tutorial For Beginners"
+    },
+    {
+      id: "AaO0D66xeYY",
+      title: "5 Little Video Editing Tricks that make a BIG Difference! (Adobe Premiere Pro CC Tutorial / How to)"
+    },
+    {
+      id: "q1n2DR6H7mk",
+      title: "What Makes Cinema Lenses So Special!? | DEEP DIVE on Arri Signature Primes"
+    },
+    {
+      id: "_Y8BVC5-fuA",
+      title: "Interstellar’s Editing Is Out of This World"
+    },
+    {
+      id: "ltMBvp2ENM0",
+      title: "BlackMagic Pocket Cinema Camera 6K PRO | The New King of Low Budget Cinema Cameras?"
     }
   ];
 

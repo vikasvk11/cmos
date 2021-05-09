@@ -65,11 +65,8 @@ export function Videopage() {
         </div>
     </div> 
     
-    < div className = {
-        `modal-bg ${modalState
-            ? "modal-bg-active"
-            : ""}`
-    } > <div className="modal">
+    <div className = {`modal-bg ${modalState? "modal-bg-active": ""}`}> 
+      <div className="modal">
         <div className="modal-head">
             <h1 className="modal-header">Add to playlist</h1>
             <span
@@ -119,6 +116,6 @@ export function Videopage() {
         </div>
       </div> 
       </div>
-    </>)
-    ;
+    </>
+    );
 }
