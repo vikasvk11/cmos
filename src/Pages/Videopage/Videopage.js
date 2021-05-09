@@ -71,7 +71,7 @@ export function Videopage() {
             </span>
           </div>
 
-          {playlists.map((item) => {
+          {playlists.map((item,index) => {
             return (
               <div className="modal-playlist-title" key={item.id}>
                 <label>
@@ -85,7 +85,8 @@ export function Videopage() {
                           : "ADD_TO_PLAYLIST",
                         payload: {
                           playlistId: item.id,
-                          videoId: videoId
+                          videoId: videoId,
+                          index: index
                         }
                       })
                     }

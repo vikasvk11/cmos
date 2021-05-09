@@ -38,30 +38,23 @@ export function PlaylistProvider({ children }) {
         );
 
         if (!pl.videos.includes(action.payload.videoId)) {
-          pl.videos.unshift(action.payload.videoId);
+          state.playlists[action.payload.index].videos.unshift(action.payload.videoId)
         }
-        const pls = state.playlists.filter(
-          (item) => item.id !== action.payload.playlistId
-        );
+       
         return {
-          ...state,
-          playlists: [...pls, pl]
+          ...state
         };
+
       case REMOVE_FROM_PLAYLIST:
-        let plr = state.playlists.find(
-          (item) => item.id === action.payload.playlistId
-        );
 
-        let videosArray = plr.videos.filter(
-          (item) => item !== action.payload.videoId
-        );
+        let videoIndex = state.playlists[action.payload.index].videos.findIndex(item => item === action.payload.videoId);
 
-        const plsr = state.playlists.filter(
-          (item) => item.id !== action.payload.playlistId
-        );
+        if(videoIndex !== -1) {
+          state.playlists[action.payload.index].videos.splice(videoIndex, videoIndex + 1);
+        }
+
         return {
-          ...state,
-          playlists: [...plsr, { ...plr, videos: videosArray }]
+          ...state
         };
       default:
         return state;

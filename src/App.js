@@ -2,6 +2,7 @@ import "./styles.css";
 import "./Pages/Home/home.css";
 import { Router } from "./Router";
 import { NavBar } from "./Components/NavBar";
+import { PivotBar } from "./Components/PivotBar";
 
 export default function App() {
 
@@ -9,6 +10,7 @@ export default function App() {
     <>
       <div className="App">
         <NavBar/>
+        <PivotBar />
       </div>
       <Router />
     </>
