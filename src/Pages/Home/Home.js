@@ -3,6 +3,7 @@ import "../../styles.css";
 import "./home.css";
 import { data } from "../../ConstantValues";
 import { MenuList } from "../../Components/MenuList";
+import { Thumbnail } from "../../Components/Thumbnail";
 
 export function Home() {
   const navigate = useNavigate();
@@ -14,24 +15,7 @@ export function Home() {
     <ul className="video-list-container">
       {data.map((item, index) => {
         return (
-          <li key={index}  
-            onClick={() => navigate(`/videos/${item.id}`)} 
-            className="video-list-item">
-            <div>
-              <div className="container16x9">
-                <img
-                  className="responsive-img"
-                  src={`http://img.youtube.com/vi/${item.id}/0.jpg`}
-                  alt="video"
-                />
-              </div>
-              <h1
-                className="video-header"
-              >
-                {item.title}
-              </h1>
-            </div>
-          </li>
+          <Thumbnail key={item.id} videoId={item.id} videoTitle={item.title}/>
         );
       })}
     </ul>

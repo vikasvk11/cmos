@@ -5,6 +5,7 @@ import "../../styles.css";
 import "../Home/home.css";
 import "./playlist.css";
 import { MenuList } from "../../Components/MenuList";
+import { Thumbnail } from "../../Components/Thumbnail";
 
 export function Playlist() {
   const { playlistState, playlistDispatch } = usePlaylist();
@@ -36,23 +37,7 @@ export function Playlist() {
               {[...videos.map((item) => data.find((el) => el.id === item))].map(
                 (el) => {
                   return (
-                    <li key={el.id} className="video-list-item">
-                      <div>
-                        <div className="container16x9">
-                          <img
-                            className="responsive-img"
-                            src={`http://img.youtube.com/vi/${el.id}/0.jpg`}
-                            alt="video"
-                          />
-                        </div>
-                        <h1
-                          onClick={() => navigate(`/videos/${el.id}`)}
-                          className="video-header"
-                        >
-                          {el.title}
-                        </h1>
-                      </div>
-                    </li>
+                    <Thumbnail key={el.id} videoId={el.id} videoTitle={el.title}/>
                   );
                 }
               )}
