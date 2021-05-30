@@ -110,9 +110,38 @@
     margin: 0rem 0 1rem 0;
   }
 
+  .video-description-container {
+    border-top: 1px solid rgb(97, 97, 97);
+    border-bottom: 1px solid rgb(97, 97, 97);
+    margin: 0.5rem;
+  }
+  
+  .video-description_header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .video-description_header {
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgb(211, 211, 211);
+    margin: 0.5rem 0;
+  }
+
+  .video-description_text {
+    margin: 0.5rem 0;
+    font-size: 0.8rem;
+    color: rgb(211, 211, 211);
+    display: none;
+  }
+
+  .video-description_text.pop {
+    display: block;
+  }
+
   .videopage-morevideos-container {
     margin: 0.5rem 0.5rem 3rem 0.5rem ;
-    border-top: 1px solid rgb(97, 97, 97);
   }
 
   .videopage-morevideos_header {
