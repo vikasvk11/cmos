@@ -76,6 +76,51 @@
     height: 100%;
   }
 
+  .btn-primary-outline.videopage-btn {
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #3ca1cd;
+    font-size: 0.5rem;
+    background-color: #3ca2cd1f;
+    padding: 0.4rem 0.6rem;
+    margin: 0.5rem;
+  }
+
+  .videopage-btn:hover {
+    background-color: #3ca2cd3f;
+  }
+
+  .f5 {
+    font-size: 1.3rem;
+  }
+
+  .videoactions-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .videoactions-bar_views{
+    margin: 0.5rem;
+    font-size: 0.8rem;
+    color: #dadadab2;
+  }
+
+  .mgt1 {
+    margin: 0rem 0 1rem 0;
+  }
+
+  .videopage-morevideos-container {
+    margin: 0.5rem 0.5rem 3rem 0.5rem ;
+    border-top: 1px solid rgb(97, 97, 97);
+  }
+
+  .videopage-morevideos_header {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0.6rem 0;
+  }
+
   @media only screen and (min-width: 992px) {
 
     .videopage-main-container {

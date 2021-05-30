@@ -12,6 +12,11 @@
     cursor: pointer;
   }
 
+  /* .video-list-item > div{
+    min-width: 100%;
+    min-height: 100%;
+  } */
+
   .video-list-item > div > h1 {
     display: -webkit-box;
     -webkit-line-clamp: 2;

@@ -1,10 +1,11 @@
 import {useParams} from "react-router-dom";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import {data} from "../../ConstantValues";
 import {usePlaylist} from "../../Context/PlaylistProvider.js";
+import "../../styles.css";
 import "./videopage.css";
-import "../../styles.css"
 import {MenuList} from "../../Components/MenuList";
+import { Thumbnail } from "../../Components/Thumbnail";
 
 export function Videopage() {
     const {videoId} = useParams();
@@ -26,44 +27,74 @@ export function Videopage() {
         }
     }
 
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+
+    const nextVideos = data.filter(item => item.id !== videoId);
+
+    shuffleArray(nextVideos);
+
     return ( 
         <> 
         <div className="videopage-main-container">
-        <MenuList/>
-        <div className="videopage-container_main">
-        <div className="videopage-container">
-            <div className="video-wrapper">
-                <iframe
-                    className="video"
-                    src={`https://www.youtube.com/embed/${videoId}`}
-                    title="YouTube video player"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen></iframe>
+            <MenuList/>
+            <div className="videopage-container_main">
+                <div className="videopage-container">
+                    <div className="video-wrapper">
+                        <iframe
+                            className="video"
+                            src={`https://www.youtube.com/embed/${videoId}`}
+                            title="YouTube video player"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen></iframe>
+                    </div>
+                    <h1 className="videopage-header">{title}</h1>
+                    <div className="videoactions-bar">
+                        <p className="videoactions-bar_views">1,200,000 views</p>
+                        <div className="videoactions-bar_btns">
+                        <button
+                            className="btn-primary-outline mg_1 videopage-btn"
+                            onClick={() => playlistDispatch({
+                            type: liked.includes(id)
+                                ? "REMOVE_FROM_LIKED"
+                                : "ADD_TO_LIKED",
+                            payload: id
+                        })}>
+                            {liked.includes(id)
+                                ? (
+                                    <span className="material-icons f5">thumb_up_alt</span>
+                                )
+                                : (
+                                    <span className="material-icons f5">thumb_up_off_alt</span>
+                                )}
+                        </button>
+                        <button className="btn-primary-outline videopage-btn" onClick={() => setModalState(true)}>
+                            <span className="material-icons f5">playlist_add</span>
+                        </button>
+                        </div>
+                    </div>       
+                </div>
             </div>
-            <h1 className="videopage-header">{title}</h1>
-            <button
-                className="btn-primary-outline mg_1"
-                onClick={() => playlistDispatch({
-                type: liked.includes(id)
-                    ? "REMOVE_FROM_LIKED"
-                    : "ADD_TO_LIKED",
-                payload: id
-            })}>
-                {liked.includes(id)
-                    ? (
-                        <span className="material-icons">thumb_up_alt</span>
-                    )
-                    : (
-                        <span className="material-icons">thumb_up_off_alt</span>
-                    )}
-            </button>
-            <button className="btn-primary-outline" onClick={() => setModalState(true)}>
-                <span className="material-icons">playlist_add</span>
-            </button>
-        </div>
-        </div>
-    </div> 
+            <div className="videopage-morevideos-container">
+                <h2 className="videopage-morevideos_header">More Videos</h2>
+                <ul className="video-list-container mgt1">
+                    {nextVideos.map(videoItem => {
+                        return (
+                            <Thumbnail key={videoItem.id} videoId={videoItem.id} videoTitle={videoItem.title}/>
+                        );
+                    })}
+                </ul>
+            </div>
+        </div> 
     
     <div className = {`modal-bg ${modalState? "modal-bg-active": ""}`}> 
       <div className="modal">
