@@ -1,5 +1,5 @@
 .videopage-container {
-    max-width: 900px;
+    max-width: 1000px;
     margin-top: 3.4rem;
   }
   
@@ -98,12 +98,25 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin: 0.5rem;
   }
 
   .videoactions-bar_views{
-    margin: 0.5rem;
     font-size: 0.8rem;
     color: #dadadab2;
+    flex: 1 1;
+  }
+
+  .channel-name {
+    font-weight: 600;
+    flex: 1 1;
+    text-align: center;
+  }
+
+  .videoactions-bar_btns {
+    flex: 1 1;
+    display: flex;
+    justify-content: flex-end;
   }
 
   .mgt1 {
@@ -134,6 +147,7 @@
     font-size: 0.8rem;
     color: rgb(211, 211, 211);
     display: none;
+    white-space: pre-wrap;
   }
 
   .video-description_text.pop {
@@ -150,15 +164,55 @@
     margin: 0.6rem 0;
   }
 
+  /* width */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgb(49, 49, 49); 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #646464; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
   @media only screen and (min-width: 992px) {
 
     .videopage-main-container {
       display: flex;
-      min-height: 100vh;
+      height: 100vh;
     }
 
     .videopage-container_main {
-      flex: 82%;
+      flex: 62%;
+      overflow-y: scroll;
+    }
+
+    .video-description_text {
+      display: block;
+    }
+
+    .video-description_icon {
+      display: none;
+    }
+
+    .videopage-morevideos-container {
+      flex: 20%;
+      overflow-y: scroll;
+      margin: 0.5rem;
+    }
+
+    .videopage-morevideos_header {
+      margin: 3.4rem 0 0.6rem 0;
     }
   }
   

@@ -41,7 +41,7 @@ export const data =  [
     },
     {
       id: "458I2hkaqjk",
-      title: "In Camera Transitions: A Masterclass."
+      title: "In Camera Transitions: A Masterclass"
     },
     {
       id: "g0C3Q7bjfMs",
@@ -87,3 +87,4 @@ export const CREATE_PLAYLIST = "CREATE_PLAYLIST";
 export const DELETE_PLAYLIST = "DELETE_PLAYLIST";
 export const ADD_TO_PLAYLIST = "ADD_TO_PLAYLIST";
 export const REMOVE_FROM_PLAYLIST = "REMOVE_FROM_PLAYLIST";
+export const ADD_TO_HISTORY = "ADD_TO_HISTORY";

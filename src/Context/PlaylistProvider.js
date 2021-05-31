@@ -5,20 +5,25 @@ import {ADD_TO_LIKED,
         CREATE_PLAYLIST,
         DELETE_PLAYLIST,
         ADD_TO_PLAYLIST,
-        REMOVE_FROM_PLAYLIST} from "../ConstantValues";
+        REMOVE_FROM_PLAYLIST,
+        ADD_TO_HISTORY
+      } from "../ConstantValues";
 
 const PlaylistContext = createContext();
 
 export function PlaylistProvider({ children }) {
   function playlistReducer(state, action) {
     switch (action.type) {
+
       case ADD_TO_LIKED:
         return { ...state, liked: [...state.liked, action.payload] };
+
       case REMOVE_FROM_LIKED:
         return {
           ...state,
           liked: state.liked.filter((el) => el !== action.payload)
         };
+
       case CREATE_PLAYLIST:
         return {
           ...state,
@@ -27,11 +32,13 @@ export function PlaylistProvider({ children }) {
             { id: v4(), name: action.payload, videos: [] }
           ]
         };
+
       case DELETE_PLAYLIST:
         return {
           ...state,
           playlists: state.playlists.filter((el) => el.id !== action.payload)
         };
+
       case ADD_TO_PLAYLIST:
         let pl = state.playlists.find(
           (item) => item.id === action.payload.playlistId
@@ -40,7 +47,7 @@ export function PlaylistProvider({ children }) {
         if (!pl.videos.includes(action.payload.videoId)) {
           state.playlists[action.payload.index].videos.unshift(action.payload.videoId)
         }
-       
+
         return {
           ...state
         };
@@ -56,6 +63,23 @@ export function PlaylistProvider({ children }) {
         return {
           ...state
         };
+        
+      case ADD_TO_HISTORY:
+
+        let videoIdHistory = action.payload;
+        let videoIndexHistory = state.history.findIndex(item => item === action.payload);
+
+        if(state.history.includes(videoIdHistory)) {
+          state.history.splice(videoIndexHistory, videoIndexHistory + 1);
+          state.history.unshift(videoIdHistory);
+        } else {
+          state.history.unshift(videoIdHistory);
+        }
+        
+        return {
+          ...state
+        };
+
       default:
         return state;
     }
@@ -69,7 +93,8 @@ export function PlaylistProvider({ children }) {
         name: "Playlist 1",
         videos: ["QHDhSidFhcQ", "e6HZPmSlS5c"]
       }
-    ]
+    ],
+    history: []
   });
 
   return (

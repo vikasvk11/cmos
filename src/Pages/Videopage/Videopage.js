@@ -1,5 +1,6 @@
-import {useParams} from "react-router-dom";
+import {useParams, useNavigate} from "react-router-dom";
 import {useState, useEffect} from "react";
+import {Youtube} from "react-youtube";
 import {data} from "../../ConstantValues";
 import {usePlaylist} from "../../Context/PlaylistProvider.js";
 import "../../styles.css";
@@ -7,14 +8,15 @@ import "./videopage.css";
 import {MenuList} from "../../Components/MenuList";
 import {Thumbnail} from "../../Components/Thumbnail";
 
+
 export function Videopage() {
+    const navigate = useNavigate();
     const {videoId} = useParams();
-    const [input,
-        setInputState] = useState("");
+    const [input, setInputState] = useState("");
     const {id, title} = data.find((item) => item.id === videoId);
     const {playlistState, playlistDispatch} = usePlaylist();
-    const [modalState,
-        setModalState] = useState(false);
+    const [modalState, setModalState] = useState(false);
+    const [descriptionState, setDescriptionState] = useState(false);
     const {liked, playlists} = playlistState;
 
     function inputHandler(e) {
@@ -35,7 +37,8 @@ export function Videopage() {
     }
 
     useEffect(() => {
-        window.scrollTo(0, 0)
+        window.scrollTo(0, 0);
+        playlistDispatch({type: "ADD_TO_HISTORY", payload: videoId})
     }, [])
 
     const nextVideos = data
@@ -43,6 +46,7 @@ export function Videopage() {
         .slice(0, 6);
 
     shuffleArray(nextVideos);
+
 
     return ( 
         <> 
@@ -53,15 +57,17 @@ export function Videopage() {
                 <div className="video-wrapper">
                     <iframe
                         className="video"
-                        src={`https://www.youtube.com/embed/${videoId}`}
+                        src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
                         title="YouTube video player"
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen></iframe>
+                        allowFullScreen
+                    ></iframe>
                 </div>
                 <h1 className="videopage-header">{title}</h1>
                 <div className="videoactions-bar">
                     <p className="videoactions-bar_views">1,200,000 views</p>
+                    <p className="channel-name">Benn TK</p>
                     <div className="videoactions-bar_btns">
                         <button
                             className="btn-primary-outline mg_1 videopage-btn"
@@ -88,15 +94,16 @@ export function Videopage() {
                 </div>
             </div>
             <div className="video-description-container">
-                <div className="video-description_header-container">
+                <div onClick = {() => setDescriptionState(prevState => !prevState)}
+                     className="video-description_header-container">
                     <h1 className="video-description_header">Description</h1>
-                    <span className="material-icons">expand_more</span>
+                    <span className="material-icons video-description_icon">{descriptionState ? "expand_less" : "expand_more"}</span>
                 </div>
-                <p className="video-description_text pop">
+                <p className={`video-description_text ${descriptionState ? "pop" : ""}`}>
                     Today we're looking at comparing a $1,000.00 camera VS an $8,000.00 camera.
                     Specifically, the 80D vs the 1DXMK2. I have seen the 80D on sale as low as
                     999.99 which is why I went with that comparison price. Keep currency conversions
-                    in mind. 2 MASSIVELY different cameras. 
+                    in mind. 2 MASSIVELY different cameras.
                     You may be saying, why would you compare
                     2 cameras on such a drastically different scale? That makes no sense and no one
                     would ever compare those two - Yes and No. I wanted to go over a few of the
@@ -117,11 +124,8 @@ export function Videopage() {
             </ul>
         </div>
     </div> 
-    <div className = {
-        `modal-bg ${modalState
-            ? "modal-bg-active"
-            : ""}`
-    } > <div className="modal">
+    <div className = {`modal-bg ${modalState ? "modal-bg-active" : ""}`}> 
+        <div className="modal">
         <div className="modal-head">
             <h1 className="modal-header">Add to playlist</h1>
             <span
