@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import "../../styles.css";
 import "./home.css";
 import { data } from "../../ConstantValues";

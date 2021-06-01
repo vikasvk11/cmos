@@ -1,5 +1,5 @@
 .video-list-container.liked,  .video-list-container.playlist{
-    margin: 1rem 1rem 1rem 1rem;
+    margin: 1rem 1rem 3rem 1rem;
     justify-content: flex-start;
 }
 
@@ -8,14 +8,14 @@
     margin: 4rem 1rem 1rem 1rem;
   }
 
-  .playlist-head {
+.playlist-head {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 2rem;
   }
   
-  .playlist-delete-btn {
+.playlist-delete-btn {
     transform: scale(0.7);
     margin: 0 1rem;
   }

@@ -1,0 +1,35 @@
+.signup-container {
+    display: flex;
+    margin-top: 3rem;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.input-bar {
+    background-color: rgb(77, 77, 77);
+}
+
+.form-header {
+    font-size: 1.5rem;
+}
+
+.form-container {
+    border: none;
+}
+
+.input-container > label {
+    color: #ADADAD;
+    font-weight: 600;
+}
+
+.input-container > input {
+    border: none;
+}
+
+.input-container > input:focus {
+    background-color: rgb(29, 29, 29);
+}
+
+.btn-submit {
+    background-color: #3590b8;
+}

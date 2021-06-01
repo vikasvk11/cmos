@@ -1,15 +1,35 @@
 import { usePlaylist } from "../../Context/PlaylistProvider";
 import { data } from "../../ConstantValues";
-import { useNavigate } from "react-router-dom";
+import { MenuList } from "../../Components/MenuList";
+import { Thumbnail } from "../../Components/Thumbnail";
 import "../../styles.css";
 import "../Home/home.css";
 import "../Playlist/playlist.css";
 
+
 export function History() {
+
+    const { playlistState, playlistDispatch } = usePlaylist();
+
+    const { history } = playlistState;
     
     return (
-        <div>
-            <h1 style={{marginTop: "3.5rem"}}>History</h1>
-        </div>
+        <>
+            <div className="playlist-page-container">
+                <MenuList/>
+                <div className="playlist-page">
+                    <h1 className="liked-header">History</h1>
+                    <ul className="video-list-container  liked">
+                        {[...history.map((item) => data.find((el) => el.id === item))].map(
+                        item => {
+                            return (
+                            <Thumbnail key={item.id} videoId={item.id} videoTitle={item.title}/>
+                            );
+                        }
+                        )}
+                    </ul>
+                </div>
+            </div>
+        </>
     );
 }
