@@ -1,8 +1,43 @@
 .signup-container {
     display: flex;
-    margin-top: 3rem;
-    align-items: flex-start;
+    flex-direction: column;
+    margin-top: 4rem;
+    align-items: center;
     justify-content: center;
+}
+
+.accountpage-actions_btns {
+    flex: 1 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-primary-outline.accountpage-btn {
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid rgb(80, 80, 80);
+    font-size: 0.9rem;
+    /* background-color: #3ca2cd1f; */
+    padding: 0.4rem 0.6rem;
+    color:rgb(184, 184, 184);
+}
+
+.btn-primary-outline:hover {
+    background-color: transparent;
+}
+
+.btn-primary-outline:focus {
+    background-color: transparent;
+}
+
+.btn-primary-outline.active {
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #3ca1cd;
+    font-size: 0.9rem;
+    background-color: #3ca2cd1f;
+    padding: 0.4rem 0.6rem;
+    color: #3ca1cd;
 }
 
 .input-bar {
@@ -10,11 +45,19 @@
 }
 
 .form-header {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 }
+
 
 .form-container {
     border: none;
+    background-color: rgb(37, 37, 37);
+    border-radius: 0;
+    display: none;
+}
+
+.visible {
+    display: flex;
 }
 
 .input-container > label {
@@ -24,6 +67,7 @@
 
 .input-container > input {
     border: none;
+    margin: 0.2rem 0;
 }
 
 .input-container > input:focus {
@@ -31,5 +75,5 @@
 }
 
 .btn-submit {
-    background-color: #3590b8;
+    background-color: #3286aa;
 }
