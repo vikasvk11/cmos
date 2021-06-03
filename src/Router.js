@@ -4,7 +4,7 @@ import { Liked } from "./Pages/Liked";
 import { History } from "./Pages/History/History";
 import { Playlist } from "./Pages/Playlist/Playlist";
 import { Videopage } from "./Pages/Videopage/Videopage";
-import { SignUp } from "./Pages/AccountPage/SignUp";
+import { AccountPage } from "./Pages/AccountPage/AccountPage";
 
 export function Router() {
   return (
@@ -14,7 +14,7 @@ export function Router() {
         <Route path="/liked" element={<Liked />} />
         <Route path="/playlists" element={<Playlist />} />
         <Route path="/history" element={<History />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/account" element={<AccountPage />} />
         <Route path="/videos/:videoId" element={<Videopage />} />
       </Routes>
     </>

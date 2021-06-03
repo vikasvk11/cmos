@@ -19,7 +19,7 @@ export function NavBar() {
                         search
                     </span>
                 </li>
-                <li  onClick={() => navigate("/signup")} className="nav-list-item">
+                <li  onClick={() => navigate("/account")} className="nav-list-item">
                 <span className="material-icons">
                         account_circle
                     </span>
