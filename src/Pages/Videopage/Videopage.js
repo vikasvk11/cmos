@@ -18,6 +18,9 @@ export function Videopage() {
     const [modalState, setModalState] = useState(false);
     const [descriptionState, setDescriptionState] = useState(false);
     const {liked, playlists} = playlistState;
+    const nextVideos = data
+        .filter(item => item.id !== videoId)
+        .slice(0, 6);
 
     function inputHandler(e) {
         setInputState(e.target.value);
@@ -38,15 +41,9 @@ export function Videopage() {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        playlistDispatch({type: "ADD_TO_HISTORY", payload: videoId})
-    }, [])
-
-    const nextVideos = data
-        .filter(item => item.id !== videoId)
-        .slice(0, 6);
-
-    shuffleArray(nextVideos);
-
+        playlistDispatch({type: "ADD_TO_HISTORY", payload: videoId});
+        shuffleArray(nextVideos);
+    }, [videoId])
 
     return ( 
         <> 
