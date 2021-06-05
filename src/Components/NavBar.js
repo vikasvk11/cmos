@@ -13,13 +13,14 @@ export function NavBar() {
             <input className="main-nav-search" placeholder="Search">
             </input>
             <ul className="main-nav-list_1 flex-end">
-                <li 
+                <li onClick={() => navigate("/loo")}
                 className="nav-list-item">
                     <span className="material-icons">
                         search
                     </span>
                 </li>
-                <li  onClick={() => navigate("/account")} className="nav-list-item">
+                <li onClick={() => navigate("/account")} 
+                    className="nav-list-item">
                 <span className="material-icons">
                         account_circle
                     </span>

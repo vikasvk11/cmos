@@ -22,10 +22,8 @@ export function usePasswordValidator({ password1 , password2 }) {
        setState((prevState) => prevState.isLongEnough && prevState.hasNumber && prevState.hasUpperCase && prevState.hasLowerCase 
                 && prevState.hasSpecialCharacters && prevState.isEqual
                  ? {...prevState, all: true} : {...prevState, all: false});
-       console.log("inside useEffect")
     }, [password1, password2]);
     
-    console.log("pass1 ", password1);
 
     const { isLongEnough, hasNumber, hasUpperCase, hasLowerCase, hasSpecialCharacters, isEqual, all } = state;
 

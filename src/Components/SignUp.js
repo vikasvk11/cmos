@@ -39,14 +39,12 @@ export function SignUp({toggle}) {
 
     }
 
-    console.log("all: ", all, "isLongEnough: ",isLongEnough, "hasNumber: ", hasNumber, "hasUpperCase: ", hasUpperCase, "hasLowerCase: ", hasLowerCase, "hasSpecialCharacters: ",  hasSpecialCharacters, "isEqual: ", isEqual);
-
     return (
         <>
             <form className={`form-container ${toggle ? "visible" : ""}`}>
 
                     <h1 className="form-header">Join ShutterStream</h1>
-                    
+
                     <div className="input-container">
                         <label htmlFor="email_input" className="form-label">Email Address</label>
                         <input type="email" id="email_input" className="input-bar"/>
