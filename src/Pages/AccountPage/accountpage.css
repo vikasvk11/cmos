@@ -77,3 +77,12 @@
 .btn-submit {
     background-color: #3286aa;
 }
+
+.btn-submit:disabled {
+    background-color: rgb(104, 104, 104);
+}
+
+.password-comment {
+    font-size: 0.75rem;
+    color: #cd3c3c;
+}
