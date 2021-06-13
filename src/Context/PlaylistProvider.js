@@ -1,6 +1,8 @@
 import { createContext, useReducer, useContext } from "react";
 import { v4 } from "uuid";
-import {ADD_TO_LIKED, 
+import {
+        ADD_ALL_VIDEO_DATA,
+        ADD_TO_LIKED, 
         REMOVE_FROM_LIKED,
         CREATE_PLAYLIST,
         DELETE_PLAYLIST,
@@ -14,6 +16,9 @@ const PlaylistContext = createContext();
 export function PlaylistProvider({ children }) {
   function playlistReducer(state, action) {
     switch (action.type) {
+
+      case ADD_ALL_VIDEO_DATA:
+        return {...state, videoData: [...action.payload]}
 
       case ADD_TO_LIKED:
         return { ...state, liked: [...state.liked, action.payload] };
@@ -86,6 +91,7 @@ export function PlaylistProvider({ children }) {
   }
 
   const [playlistState, playlistDispatch] = useReducer(playlistReducer, {
+    videoData: [],
     liked: [],
     playlists: [
       {

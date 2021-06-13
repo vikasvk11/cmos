@@ -7,6 +7,7 @@ import { Videopage } from "./Pages/Videopage/Videopage";
 import { AccountPage } from "./Pages/AccountPage/AccountPage";
 import { Loo } from "./Pages/Loo";
 import {PrivateRoute} from "./PrivateRoute";
+import ScrollToTop from "./Components/ScrollToTop";
 
 
 
@@ -14,6 +15,7 @@ export function Router() {
 
   return (
     <>
+    
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/liked" element={<Liked />} />

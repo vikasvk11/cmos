@@ -11,7 +11,7 @@ export function History() {
 
     const { playlistState, playlistDispatch } = usePlaylist();
 
-    const { history } = playlistState;
+    const { videoData, history } = playlistState;
     
     return (
         <>
@@ -20,10 +20,16 @@ export function History() {
                 <div className="playlist-page">
                     <h1 className="liked-header">History</h1>
                     <ul className="video-list-container  liked">
-                        {[...history.map((item) => data.find((el) => el.id === item))].map(
+                        {[...history.map((item) => videoData.find((el) => el._id === item))].map(
                         item => {
                             return (
-                            <Thumbnail key={item.id} videoId={item.id} videoTitle={item.title}/>
+                            <Thumbnail 
+                            key={item._id} 
+                            videoId={item._id} 
+                            videoTitle={item.title}
+                            views={item.views} 
+                            duration={item.duration} 
+                            channelName={item.channelName}/>
                             );
                         }
                         )}

@@ -2,7 +2,7 @@ import "../styles.css";
 import "../Pages/Home/home.css"
 import {useNavigate} from "react-router-dom";
 
-export function Thumbnail({ videoId, videoTitle }) {
+export function Thumbnail({ videoId, videoTitle, views, duration, channelName }) {
 
     const navigate = useNavigate();
     return (
@@ -18,7 +18,7 @@ export function Thumbnail({ videoId, videoTitle }) {
                   alt="video"
                 />
                 <div className="thumbnail_video-duration">
-                  11:02
+                  {duration}
                 </div>
               </div>
               <h1
@@ -27,7 +27,7 @@ export function Thumbnail({ videoId, videoTitle }) {
                 {videoTitle}
               </h1>
               <p className="thumbnail_details">
-                Benn TK | 1,213,452 views
+                {channelName} | {views} views
               </p>
             </div>
           </li>

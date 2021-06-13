@@ -13,13 +13,13 @@ export function Videopage() {
     const navigate = useNavigate();
     const {videoId} = useParams();
     const [input, setInputState] = useState("");
-    const {id, title} = data.find((item) => item.id === videoId);
     const {playlistState, playlistDispatch} = usePlaylist();
     const [modalState, setModalState] = useState(false);
     const [descriptionState, setDescriptionState] = useState(false);
-    const {liked, playlists} = playlistState;
-    const nextVideos = data
-        .filter(item => item.id !== videoId)
+    const {videoData, liked, playlists} = playlistState;
+    const {_id, title, views, duration, channelName, description} = videoData.find((item) => item._id === videoId);
+    const nextVideos = videoData
+        .filter(item => item._id !== videoId)
         .slice(0, 6);
 
     function inputHandler(e) {
@@ -40,7 +40,7 @@ export function Videopage() {
     }
 
     useEffect(() => {
-        window.scrollTo(0, 0);
+        // window.scrollTo(0, 0);
         playlistDispatch({type: "ADD_TO_HISTORY", payload: videoId});
         shuffleArray(nextVideos);
     }, [videoId])
@@ -63,18 +63,18 @@ export function Videopage() {
                 </div>
                 <h1 className="videopage-header">{title}</h1>
                 <div className="videoactions-bar">
-                    <p className="videoactions-bar_views">1,200,000 views</p>
-                    <p className="channel-name">Benn TK</p>
+                    <p className="videoactions-bar_views">{views} views</p>
+                    <p className="channel-name">{channelName}</p>
                     <div className="videoactions-bar_btns">
                         <button
                             className="btn-primary-outline mg_1 videopage-btn"
                             onClick={() => playlistDispatch({
-                            type: liked.includes(id)
+                            type: liked.includes(_id)
                                 ? "REMOVE_FROM_LIKED"
                                 : "ADD_TO_LIKED",
-                            payload: id
+                            payload: _id
                         })}>
-                            {liked.includes(id)
+                            {liked.includes(_id)
                                 ? (
                                     <span className="material-icons f5">thumb_up_alt</span>
                                 )
@@ -97,15 +97,7 @@ export function Videopage() {
                     <span className="material-icons video-description_icon">{descriptionState ? "expand_less" : "expand_more"}</span>
                 </div>
                 <p className={`video-description_text ${descriptionState ? "pop" : ""}`}>
-                    Today we're looking at comparing a $1,000.00 camera VS an $8,000.00 camera.
-                    Specifically, the 80D vs the 1DXMK2. I have seen the 80D on sale as low as
-                    999.99 which is why I went with that comparison price. Keep currency conversions
-                    in mind. 2 MASSIVELY different cameras.
-                    You may be saying, why would you compare
-                    2 cameras on such a drastically different scale? That makes no sense and no one
-                    would ever compare those two - Yes and No. I wanted to go over a few of the
-                    features that MAKE a camera 8,000.00 opposed to those that don't. The quality
-                    difference is also incredibly evident.
+                    {description}
                 </p>
             </div>
         </div>
@@ -114,9 +106,12 @@ export function Videopage() {
             <ul className="video-list-container mgt1">
                 {nextVideos.map(videoItem => {
                     return (<Thumbnail
-                        key={videoItem.id}
-                        videoId={videoItem.id}
-                        videoTitle={videoItem.title}/>);
+                        key={videoItem._id}
+                        videoId={videoItem._id}
+                        videoTitle={videoItem.title}
+                        views={videoItem.views} 
+                        duration={videoItem.duration} 
+                        channelName={videoItem.channelName}/>);
                 })}
             </ul>
         </div>

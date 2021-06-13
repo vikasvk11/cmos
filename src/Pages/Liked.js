@@ -11,7 +11,7 @@ export function Liked() {
   const { playlistState, playlistDispatch } = usePlaylist();
   const navigate = useNavigate();
 
-  const { liked } = playlistState;
+  const { videoData, liked } = playlistState;
 
   return (
     <>
@@ -20,10 +20,16 @@ export function Liked() {
       <div className="playlist-page">
       <h1 className="liked-header">Liked Videos</h1>
       <ul className="video-list-container  liked">
-        {[...liked.map((item) => data.find((el) => el.id === item))].map(
+        {[...liked.map((item) => videoData.find((el) => el._id === item))].map(
           (item, index) => {
             return (
-              <Thumbnail key={item.id} videoId={item.id} videoTitle={item.title}/>
+              <Thumbnail 
+              key={item._id} 
+              videoId={item._id} 
+              videoTitle={item.title}
+              views={item.views} 
+              duration={item.duration} 
+              channelName={item.channelName} />
             );
           }
         )}

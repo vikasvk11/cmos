@@ -81,6 +81,7 @@ export const data =  [
     }
   ];
 
+export const ADD_ALL_VIDEO_DATA = "ADD_ALL_VIDEO_DATA";
 export const ADD_TO_LIKED = "ADD_TO_LIKED";
 export const REMOVE_FROM_LIKED = "REMOVE_FROM_LIKED";
 export const CREATE_PLAYLIST = "CREATE_PLAYLIST";
@@ -88,3 +89,5 @@ export const DELETE_PLAYLIST = "DELETE_PLAYLIST";
 export const ADD_TO_PLAYLIST = "ADD_TO_PLAYLIST";
 export const REMOVE_FROM_PLAYLIST = "REMOVE_FROM_PLAYLIST";
 export const ADD_TO_HISTORY = "ADD_TO_HISTORY";
+
+
