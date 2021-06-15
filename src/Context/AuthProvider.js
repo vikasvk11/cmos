@@ -25,9 +25,8 @@ export function AuthProvider({children}) {
                 JSON.stringify({ isLogin: true, token })
               );
           }
-            
         } catch (error) {
-          console.log("Sahi username password nahi pata kya?", error);
+          console.log("Wrong Username / Password", error);
         }
       }
 
