@@ -2,7 +2,7 @@ import "../styles.css";
 import "../Pages/AccountPage/accountpage.css";
 import "../Pages/Videopage/videopage.css";
 import { useLogin } from "../Context/AuthProvider";
-import {useNavigate, useLocation} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 export function Logout() {
 

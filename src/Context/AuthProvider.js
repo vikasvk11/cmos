@@ -1,4 +1,4 @@
-import {createContext, useContext, useState, useEffect} from "react";
+import {createContext, useContext, useState} from "react";
 import axios from "axios";
 
 export const AuthContext = createContext();
@@ -9,13 +9,11 @@ export function AuthProvider({children}) {
     const [isLogin, setIsLogin] = useState(isUserLoggedIn);
     const [token, setToken ] = useState(savedToken);
 
-
     async function loginUserWithCredentials(username, password) {
         try {
           const response = await axios.post("https://video-library-be.vikasvk1997.repl.co/login", 
           { username, password }
          );
-          console.log("Auth Provider", response);
           if(response.data.success === true) {
             const token = response.data.token;
             setIsLogin(true);
@@ -26,7 +24,7 @@ export function AuthProvider({children}) {
               );
           }
         } catch (error) {
-          console.log("Wrong Username / Password", error);
+          throw(error);
         }
       }
 
