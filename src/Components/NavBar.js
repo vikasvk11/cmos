@@ -1,9 +1,11 @@
 import { useState } from "react";
 import {useNavigate} from "react-router-dom";
+import { useLogin } from "../Context/AuthProvider";
 
 export function NavBar() {
 
     const navigate = useNavigate();
+    const {isLogin} = useLogin();
 
     return (
         <nav className="main-nav">
@@ -21,7 +23,7 @@ export function NavBar() {
                 </li>
                 <li onClick={() => navigate("/account")} 
                     className="nav-list-item">
-                <span className="material-icons">
+                <span className="material-icons" style={{color: `${isLogin ? "#3ca1cd" : "" }`}}>
                         account_circle
                     </span>
                 </li>

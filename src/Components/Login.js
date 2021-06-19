@@ -4,6 +4,7 @@ import "../Pages/Videopage/videopage.css";
 import { useLogin } from "../Context/AuthProvider";
 import {useNavigate, useLocation} from "react-router-dom";
 import {useState} from "react";
+import { Loader } from "./Loader";
 
 export function Login({toggle}) {
 
@@ -11,9 +12,11 @@ export function Login({toggle}) {
     const navigate = useNavigate();
     const { state } = useLocation();
     const [loginData, setLoginData] = useState({username: "", password: ""});
-    const [error, setError] = useState(null)
+    const [error, setError] = useState(null);
+    const [loader, setLoader] = useState(false);
 
     async function loginHandler() {
+        setLoader(true);
         try {
             const response = await loginUserWithCredentials(loginData.username, loginData.password);
             navigate(state?.from ? state.from : "/");
@@ -25,6 +28,8 @@ export function Login({toggle}) {
                 setError("Email doesn't exist. Please Sign Up.")
                 setLoginData({username: "", password: ""})
             }
+        } finally {
+            setLoader(false);
         }
     }
 
@@ -60,7 +65,7 @@ export function Login({toggle}) {
                 <p style={{color: "#cd3c3c", marginBottom: "1rem", fontSize: "0.8rem"}}>{error}</p>
 
                 <div className="btn-submit-container">
-                    <button onClick={loginHandler} className="btn-primary btn-submit" type="button">Log In</button>
+                    <button disabled={loader} onClick={loginHandler} className="btn-primary btn-submit" type="button">{loader ? <Loader/> : "Log In"}</button>
                 </div>
             </form>
         </>
