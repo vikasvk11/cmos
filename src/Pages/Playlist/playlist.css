@@ -1,6 +1,11 @@
 .video-list-container.liked,  .video-list-container.playlist{
-    margin: 1rem 1rem 3rem 1rem;
+    margin: 1rem 1rem 1.5rem 1rem;
     justify-content: flex-start;
+}
+
+.video-list-container.playlist{
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgb(85, 85, 85);
 }
 
 .liked-header {

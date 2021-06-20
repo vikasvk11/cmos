@@ -1,5 +1,4 @@
 import { usePlaylist } from "../../Context/PlaylistProvider";
-import { data } from "../../ConstantValues";
 import { useNavigate } from "react-router-dom";
 import "../../styles.css";
 import "../Home/home.css";
@@ -11,7 +10,7 @@ export function Playlist() {
   const { playlistState, playlistDispatch } = usePlaylist();
   const navigate = useNavigate();
 
-  const { playlists } = playlistState;
+  const { videoData, playlists } = playlistState;
 
   return (
     <>
@@ -34,10 +33,17 @@ export function Playlist() {
               </button>
             </div>
             <ul className="video-list-container playlist">
-              {[...videos.map((item) => data.find((el) => el.id === item))].map(
+              {[...videos.map((item) => videoData.find((el) => el._id === item))].map(
                 (el) => {
                   return (
-                    <Thumbnail key={el.id} videoId={el.id} videoTitle={el.title}/>
+                    <Thumbnail 
+                    key={el._id} 
+                    videoId={el._id} 
+                    videoTitle={el.title}
+                    views={el.views} 
+                    duration={el.duration} 
+                    channelName={el.channelName}
+                    />
                   );
                 }
               )}

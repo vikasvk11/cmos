@@ -1,6 +1,5 @@
 import { usePlaylist } from "../Context/PlaylistProvider";
 import { useNavigate } from "react-router-dom";
-import { data } from "../ConstantValues";
 import "../styles.css";
 import "./Home/home.css";
 import "./Playlist/playlist.css";

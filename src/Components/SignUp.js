@@ -3,15 +3,20 @@ import "../Pages/AccountPage/accountpage.css";
 import "../Pages/Videopage/videopage.css";
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useLogin } from "../Context/AuthProvider";
 import { usePasswordValidator } from "../CustomHooks/PasswordValidator";
+import { Loader } from "./Loader";
 
 export function SignUp({toggle}) {
 
+    const {isLogin, loginUserWithCredentials, setIsLogin} = useLogin();
     const [email, setEmail] = useState({email: "", validation: null});
     const [password, setPassword] = useState({password: "", confirmPassword: ""});
     const [commentState, setCommentState] = useState({p1: false, p2: false, p3: false});
+    const [loader, setLoader] = useState(false);
     const navigate = useNavigate();
+    const { state } = useLocation();
 
     const {
         isLongEnough, 
@@ -50,14 +55,19 @@ export function SignUp({toggle}) {
     }
 
     async function signUp() {
+        setLoader(true);
         try {
             const response = await axios.post("https://video-library-be.vikasvk1997.repl.co/signup", {
                 _id: email.email,
                 password: password.password
             })
-            console.log(response);
+            const response2 = await loginUserWithCredentials(email.email, password.password);
+            navigate(state?.from ? state.from : "/");
+            console.log(response2);
         } catch(error) {
             console.log("error", error)
+        } finally {
+            setLoader(false);
         }
     }
 
@@ -96,7 +106,7 @@ export function SignUp({toggle}) {
                     </div>
 
                     <div className="btn-submit-container">
-                        <button disabled={!all} className="btn-primary btn-submit" type="button" onClick={signUp}>Sign Up</button>
+                        <button disabled={!all || loader} className="btn-primary btn-submit" type="button" onClick={signUp}>{loader ? <Loader/> : "Sign Up"}</button>
                     </div>
             </form>
         </>
