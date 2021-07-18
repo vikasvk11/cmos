@@ -2,24 +2,31 @@ import { createContext, useReducer, useContext } from "react";
 import { v4 } from "uuid";
 import {
         ADD_ALL_VIDEO_DATA,
+        ADD_USER_DATA,
         ADD_TO_LIKED, 
         REMOVE_FROM_LIKED,
         CREATE_PLAYLIST,
         DELETE_PLAYLIST,
         ADD_TO_PLAYLIST,
         REMOVE_FROM_PLAYLIST,
-        ADD_TO_HISTORY
+        ADD_TO_HISTORY,
+        RESET_STATE
       } from "../ConstantValues";
 
 const PlaylistContext = createContext();
 
 export function PlaylistProvider({ children }) {
+
   function playlistReducer(state, action) {
+    
     switch (action.type) {
 
       case ADD_ALL_VIDEO_DATA:
         return {...state, videoData: [...action.payload]}
 
+      case ADD_USER_DATA: 
+        return {...state, ...action.payload};
+      
       case ADD_TO_LIKED:
         return { ...state, liked: [...state.liked, action.payload] };
 
@@ -32,25 +39,25 @@ export function PlaylistProvider({ children }) {
       case CREATE_PLAYLIST:
         return {
           ...state,
-          playlists: [
-            ...state.playlists,
-            { id: v4(), name: action.payload, videos: [] }
+          playlist: [
+            ...state.playlist,
+            { _id: v4(), name: action.payload, videos: [] }
           ]
         };
 
       case DELETE_PLAYLIST:
         return {
           ...state,
-          playlists: state.playlists.filter((el) => el.id !== action.payload)
+          playlist: state.playlist.filter((el) => el._id !== action.payload)
         };
 
       case ADD_TO_PLAYLIST:
-        let pl = state.playlists.find(
-          (item) => item.id === action.payload.playlistId
+        let pl = state.playlist.find(
+          (item) => item._id === action.payload.playlistId
         );
 
         if (!pl.videos.includes(action.payload.videoId)) {
-          state.playlists[action.payload.index].videos.unshift(action.payload.videoId)
+          state.playlist[action.payload.index].videos.unshift(action.payload.videoId)
         }
 
         return {
@@ -59,10 +66,10 @@ export function PlaylistProvider({ children }) {
 
       case REMOVE_FROM_PLAYLIST:
 
-        let videoIndex = state.playlists[action.payload.index].videos.findIndex(item => item === action.payload.videoId);
+        let videoIndex = state.playlist[action.payload.index].videos.findIndex(item => item === action.payload.videoId);
 
         if(videoIndex !== -1) {
-          state.playlists[action.payload.index].videos.splice(videoIndex, videoIndex + 1);
+          state.playlist[action.payload.index].videos.splice(videoIndex, videoIndex + 1);
         }
 
         return {
@@ -85,6 +92,15 @@ export function PlaylistProvider({ children }) {
           ...state
         };
 
+      case RESET_STATE:
+
+      return {
+        videoData: [],
+        liked: [],
+        playlist: [],
+        history: []
+      }
+
       default:
         return state;
     }
@@ -93,9 +109,9 @@ export function PlaylistProvider({ children }) {
   const [playlistState, playlistDispatch] = useReducer(playlistReducer, {
     videoData: [],
     liked: [],
-    playlists: [
+    playlist: [
       {
-        id: v4(),
+        _id: v4(),
         name: "Playlist 1",
         videos: ["QHDhSidFhcQ", "e6HZPmSlS5c"]
       }

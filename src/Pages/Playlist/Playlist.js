@@ -10,7 +10,7 @@ export function Playlist() {
   const { playlistState, playlistDispatch } = usePlaylist();
   const navigate = useNavigate();
 
-  const { videoData, playlists } = playlistState;
+  const { videoData, playlist } = playlistState;
 
   return (
     <>
@@ -18,15 +18,15 @@ export function Playlist() {
       <MenuList/>
       <div className="playlist-page">
       <h1 className="liked-header">Playlist Videos</h1>
-      {playlists.map(({ id, name, videos }) => {
+      {playlist.map(({ _id, name, videos }) => {
         return (
-          <div key={id}>
+          <div key={_id}>
             <div className="playlist-head">
               <h1 className="playlist-header">{name}</h1>
               <button
                 className="btn-primary-outline playlist-delete-btn"
                 onClick={() =>
-                  playlistDispatch({ type: "DELETE_PLAYLIST", payload: id })
+                  playlistDispatch({ type: "DELETE_PLAYLIST", payload: _id })
                 }
               >
                 <span className="material-icons">delete_sweep</span>

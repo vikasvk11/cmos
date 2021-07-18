@@ -9,18 +9,15 @@ import { Loo } from "./Pages/Loo";
 import {PrivateRoute} from "./PrivateRoute";
 import ScrollToTop from "./Components/ScrollToTop";
 
-
-
 export function Router() {
 
   return (
     <>
-    
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/liked" element={<Liked />} />
-        <Route path="/playlists" element={<Playlist />} />
-        <Route path="/history" element={<History />} />
+        <PrivateRoute path="/liked" element={<Liked />} />
+        <PrivateRoute path="/playlists" element={<Playlist />} />
+        <PrivateRoute path="/history" element={<History />} />
         <Route path="/account" element={<AccountPage />} />
         <Route path="/videos/:videoId" element={<Videopage />} />
         <PrivateRoute path="/loo" element={<Loo />}/>

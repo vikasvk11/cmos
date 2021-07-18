@@ -13,13 +13,13 @@ import { useLogin } from "../Context/AuthProvider";
 export function Loo() {
 
   const [ user, setUser ] = useState(null);
-  const {token} = useLogin();
+  const {token, setIsLogin} = useLogin();
   const navigate = useNavigate();
 
   useEffect(() => {
     (async function getData() {
       try {
-        const response = await axios.get("https://video-library-be.vikasvk1997.repl.co/user",
+        const response = await axios.get("https://video-library-be.vikasvk1997.repl.co/uzer",
         {
           headers: {
             authorization: token
@@ -27,7 +27,11 @@ export function Loo() {
         });
         setUser(response.data.user)
       } catch(error) {
-        if(error.response.status === 401) navigate("/account")
+        if(error.response.status === 401) {
+          localStorage?.removeItem("login");
+          setIsLogin(false);
+          navigate("/account")
+        }
         setUser("error")
       }
     })();

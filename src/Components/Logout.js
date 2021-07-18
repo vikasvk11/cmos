@@ -3,16 +3,20 @@ import "../Pages/AccountPage/accountpage.css";
 import "../Pages/Videopage/videopage.css";
 import { useLogin } from "../Context/AuthProvider";
 import {useNavigate} from "react-router-dom";
+import { usePlaylist } from "../Context/PlaylistProvider";
+import { RESET_STATE } from "../ConstantValues";
 
 export function Logout() {
 
     const {isLogin, setIsLogin} = useLogin();
     const navigate = useNavigate();
+    const {playlistDispatch} = usePlaylist();
 
     function logoutHandler() {
         localStorage?.removeItem("login");
         setIsLogin(false);
         navigate("/");
+        playlistDispatch({type: RESET_STATE});
     }
 
     return (

@@ -7,6 +7,7 @@ import "../../styles.css";
 import "./videopage.css";
 import {MenuList} from "../../Components/MenuList";
 import {Thumbnail} from "../../Components/Thumbnail";
+import axios from "axios";
 
 
 export function Videopage() {
@@ -16,7 +17,7 @@ export function Videopage() {
     const {playlistState, playlistDispatch} = usePlaylist();
     const [modalState, setModalState] = useState(false);
     const [descriptionState, setDescriptionState] = useState(false);
-    const {videoData, liked, playlists} = playlistState;
+    const {videoData, liked, playlist} = playlistState;
     const {_id, title, views, duration, channelName, description} = videoData.find((item) => item._id === videoId);
     const nextVideos = videoData
         .filter(item => item._id !== videoId)
@@ -37,6 +38,10 @@ export function Videopage() {
             const j = Math.floor(Math.random() * (i + 1));
             [array[i], array[j]] = [array[j], array[i]];
         }
+    }
+
+    function likeBtnHandler(_id) {
+
     }
 
     useEffect(() => {
@@ -127,9 +132,9 @@ export function Videopage() {
             </span>
         </div>
 
-        {playlists.map((item, index) => {
+        {playlist.map((item, index) => {
             return (
-                <div className="modal-playlist-title" key={item.id}>
+                <div className="modal-playlist-title" key={item._id}>
                     <label>
                         <input
                             type="checkbox"
@@ -141,7 +146,7 @@ export function Videopage() {
                                 ? "REMOVE_FROM_PLAYLIST"
                                 : "ADD_TO_PLAYLIST",
                             payload: {
-                                playlistId: item.id,
+                                playlistId: item._id,
                                 videoId: videoId,
                                 index: index
                             }

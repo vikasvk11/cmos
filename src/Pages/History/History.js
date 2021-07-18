@@ -1,5 +1,4 @@
 import { usePlaylist } from "../../Context/PlaylistProvider";
-import { data } from "../../ConstantValues";
 import { MenuList } from "../../Components/MenuList";
 import { Thumbnail } from "../../Components/Thumbnail";
 import "../../styles.css";
