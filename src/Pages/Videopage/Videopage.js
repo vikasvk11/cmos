@@ -8,6 +8,8 @@ import "./videopage.css";
 import {MenuList} from "../../Components/MenuList";
 import {Thumbnail} from "../../Components/Thumbnail";
 import axios from "axios";
+import jwt from "jsonwebtoken";
+import { useLogin } from "../../Context/AuthProvider";
 
 
 export function Videopage() {
@@ -18,6 +20,7 @@ export function Videopage() {
     const [modalState, setModalState] = useState(false);
     const [descriptionState, setDescriptionState] = useState(false);
     const {videoData, liked, playlist} = playlistState;
+    const { token } = useLogin();
     const {_id, title, views, duration, channelName, description} = videoData.find((item) => item._id === videoId);
     const nextVideos = videoData
         .filter(item => item._id !== videoId)
@@ -41,12 +44,67 @@ export function Videopage() {
     }
 
     function likeBtnHandler(_id) {
-
+        const data = { videoId: _id };
+        if(!liked.includes(_id)) {
+             (async function addLiked() {
+                try {
+                    playlistDispatch({type: "ADD_TO_LIKED", payload: _id})
+                    const decoded = await jwt.decode(token);
+                    const response = await axios.post(`https://video-library-be.vikasvk1997.repl.co/liked/${decoded.userId}`, data,
+                    {
+                        headers: {
+                            authorization: token
+                          }
+                    });
+                }
+                catch(err) {
+                    console.log(err);
+                    playlistDispatch({type: "REMOVE_FROM_LIKED", payload: _id})
+                }
+            })()
+        } else {
+                (async function removeLiked() {
+                try {
+                    const decoded = await jwt.decode(token);
+                    const response = await axios.delete(`https://video-library-be.vikasvk1997.repl.co/liked/${decoded.userId}`,
+                    {
+                        headers: {
+                            authorization: token
+                          },
+                        data : {  
+                            videoId: _id
+                        }
+                    });
+                    playlistDispatch({type: "REMOVE_FROM_LIKED", payload: _id})
+                }
+                catch(err) {
+                    console.log(err);
+                    playlistDispatch({type: "ADD_TO_LIKED", payload: _id})
+                }
+            })()
+        }
     }
 
     useEffect(() => {
         // window.scrollTo(0, 0);
-        playlistDispatch({type: "ADD_TO_HISTORY", payload: videoId});
+
+        (async function addHistory() {
+            try {
+                const data = { videoIdHistory: videoId };
+                const decoded = await jwt.decode(token);
+                const response = await axios.post(`https://video-library-be.vikasvk1997.repl.co/history/${decoded.userId}`, data,
+                {
+                    headers: {
+                        authorization: token
+                      }
+                });
+                playlistDispatch({type: "ADD_TO_HISTORY", payload: videoId});
+            }
+            catch(err) {
+                console.log(err);
+            }
+        })()
+
         shuffleArray(nextVideos);
     }, [videoId])
 
@@ -73,12 +131,7 @@ export function Videopage() {
                     <div className="videoactions-bar_btns">
                         <button
                             className="btn-primary-outline mg_1 videopage-btn"
-                            onClick={() => playlistDispatch({
-                            type: liked.includes(_id)
-                                ? "REMOVE_FROM_LIKED"
-                                : "ADD_TO_LIKED",
-                            payload: _id
-                        })}>
+                            onClick={() => likeBtnHandler(_id)}>
                             {liked.includes(_id)
                                 ? (
                                     <span className="material-icons f5">thumb_up_alt</span>
