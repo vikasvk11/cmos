@@ -37,6 +37,11 @@ body {
   cursor: pointer;
 }
 
+.logo {
+  width: 0.5rem;
+  display: block;
+}
+
 .main-nav-list_1, .pivot-list {
   display: flex;
   justify-content: space-evenly;
