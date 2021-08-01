@@ -1,7 +1,5 @@
 import {useParams, useNavigate} from "react-router-dom";
 import {useState, useEffect} from "react";
-import {Youtube} from "react-youtube";
-import {data} from "../../ConstantValues";
 import {usePlaylist} from "../../Context/PlaylistProvider.js";
 import "../../styles.css";
 import "./videopage.css";
@@ -32,7 +30,24 @@ export function Videopage() {
 
     function createPlaylistBtn() {
         if (input.length !== 0) {
-            playlistDispatch({type: "CREATE_PLAYLIST", payload: input});
+
+            const data = { name: input, videos: [] };
+
+            (async function newPlaylist() {
+                try {
+                    const decoded = await jwt.decode(token);
+                    const response = await axios.post(`https://video-library-be.vikasvk1997.repl.co/playlist/${decoded.userId}`, data,
+                    {
+                        headers: {
+                            authorization: token
+                          }
+                    });
+                    playlistDispatch({type: "CREATE_PLAYLIST", payload: input});
+                }
+                catch(err) {
+                    console.log(err);
+                }
+            })()
         }
     }
 
@@ -65,21 +80,88 @@ export function Videopage() {
         } else {
                 (async function removeLiked() {
                 try {
+                    playlistDispatch({type: "REMOVE_FROM_LIKED", payload: _id})
                     const decoded = await jwt.decode(token);
-                    const response = await axios.delete(`https://video-library-be.vikasvk1997.repl.co/liked/${decoded.userId}`,
+                    const response = await axios.delete(`https://video-library-be.vikasvk1997.repl.co/liked/${decoded.userId}`, 
                     {
                         headers: {
                             authorization: token
                           },
-                        data : {  
-                            videoId: _id
-                        }
+                        data : data
                     });
-                    playlistDispatch({type: "REMOVE_FROM_LIKED", payload: _id})
                 }
                 catch(err) {
                     console.log(err);
                     playlistDispatch({type: "ADD_TO_LIKED", payload: _id})
+                }
+            })()
+        }
+    }
+
+    function addToPlaylist(playlistObj, index) {
+        const data = { videoId: videoId};
+        
+        if(!playlistObj.videos.includes(videoId)) {
+            
+            (async function addVideoToPlaylist() {
+                try {
+                        playlistDispatch({
+                            type: "ADD_TO_PLAYLIST",
+                            payload: {
+                                playlistId: playlistObj._id,
+                                videoId: videoId,
+                                index: index
+                            }
+                        })
+                        const decoded = await jwt.decode(token);
+                        const response = await axios.post(`https://video-library-be.vikasvk1997.repl.co/playlist/${decoded.userId}/${playlistObj._id}`, data,
+                        {
+                            headers: {
+                                authorization: token
+                            }
+                        });
+                }
+                catch(err) {
+                    console.log(err);
+                    playlistDispatch({
+                        type: "REMOVE_FROM_PLAYLIST",
+                        payload: {
+                            playlistId: playlistObj._id,
+                            videoId: videoId,
+                            index: index
+                        }
+                    })
+                }
+            })()
+        } else {
+
+            (async function removeFromPlaylist() {
+                try {
+                    playlistDispatch({
+                        type: "REMOVE_FROM_PLAYLIST",
+                        payload: {
+                            playlistId: playlistObj._id,
+                            videoId: videoId,
+                            index: index
+                        }
+                    })
+                    const decoded = await jwt.decode(token);
+                    const response = await axios.delete(`https://video-library-be.vikasvk1997.repl.co/playlist/${decoded.userId}/${playlistObj._id}/${videoId}`,
+                    {
+                        headers: {
+                            authorization: token
+                        }
+                    })
+                } catch(err) {
+                    console.log(err);
+                    playlistDispatch({
+                        type: "ADD_TO_PLAYLIST",
+                        payload: {
+                            playlistId: playlistObj._id,
+                            videoId: videoId,
+                            index: index
+                        }
+                    })
                 }
             })()
         }
@@ -176,54 +258,42 @@ export function Videopage() {
     </div> 
     <div className = {`modal-bg ${modalState ? "modal-bg-active" : ""}`}> 
         <div className="modal">
-        <div className="modal-head">
-            <h1 className="modal-header">Add to playlist</h1>
-            <span
-                className="material-icons modal-close"
-                onClick={() => setModalState(false)}>
-                close
-            </span>
-        </div>
+            <div className="modal-head">
+                <h1 className="modal-header">Add to playlist</h1>
+                <span
+                    className="material-icons modal-close"
+                    onClick={() => setModalState(false)}>
+                    close
+                </span>
+            </div>
 
-        {playlist.map((item, index) => {
-            return (
-                <div className="modal-playlist-title" key={item._id}>
-                    <label>
-                        <input
-                            type="checkbox"
-                            name="playlist"
-                            onChange={() => playlistDispatch({
-                            type: item
-                                .videos
-                                .includes(videoId)
-                                ? "REMOVE_FROM_PLAYLIST"
-                                : "ADD_TO_PLAYLIST",
-                            payload: {
-                                playlistId: item._id,
-                                videoId: videoId,
-                                index: index
-                            }
-                        })}
-                            checked={item
-                            .videos
-                            .includes(videoId)}/>{" "} {item.name}
-                    </label>
-                </div>
-            );
-        })}
+            {playlist.map((item, index) => {
+                return (
+                    <div className="modal-playlist-title" key={item._id}>
+                        <label>
+                            <input
+                                type="checkbox"
+                                name="playlist"
+                                onChange={() => addToPlaylist(item, index)}
+                                checked={item.videos.includes(videoId)}/>
+                            {item.name}
+                        </label>
+                    </div>
+                );
+            })}
 
-        <div className="modal-footer">
-            <input
-                className="modal-input"
-                type="text"
-                name="createPlaylist"
-                onChange={inputHandler}
-                value={input}/>
-            <button className="btn-primary modal-btn" onClick={createPlaylistBtn}>
-                <span className="material-icons">add</span>
-            </button>
-        </div>
-    </div> 
+            <div className="modal-footer">
+                <input
+                    className="modal-input"
+                    type="text"
+                    name="createPlaylist"
+                    onChange={inputHandler}
+                    value={input}/>
+                <button className="btn-primary modal-btn" onClick={createPlaylistBtn}>
+                    <span className="material-icons">add</span>
+                </button>
+            </div>
+        </div> 
     </div>
     </>);
 }

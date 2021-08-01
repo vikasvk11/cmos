@@ -5,12 +5,36 @@ import "../Home/home.css";
 import "./playlist.css";
 import { MenuList } from "../../Components/MenuList";
 import { Thumbnail } from "../../Components/Thumbnail";
+import axios from "axios";
+import jwt from "jsonwebtoken";
+import { useLogin } from "../../Context/AuthProvider";
 
 export function Playlist() {
   const { playlistState, playlistDispatch } = usePlaylist();
   const navigate = useNavigate();
+  const { token } = useLogin();
 
   const { videoData, playlist } = playlistState;
+
+  function deletePlaylist(_id) {
+
+    (async function deleteWholePlaylist() {
+
+      try {
+            const decoded = await jwt.decode(token);
+            const response = await axios.delete(`https://video-library-be.vikasvk1997.repl.co/playlist/${decoded.userId}/${_id}`, 
+            {
+              headers: {
+                  authorization: token
+                }
+            });
+            playlistDispatch({ type: "DELETE_PLAYLIST", payload: _id })
+      } catch(err) {
+          console.log(err);
+      }
+
+  })()
+  }
 
   return (
     <>
@@ -26,7 +50,7 @@ export function Playlist() {
               <button
                 className="btn-primary-outline playlist-delete-btn"
                 onClick={() =>
-                  playlistDispatch({ type: "DELETE_PLAYLIST", payload: _id })
+                  deletePlaylist(_id)
                 }
               >
                 <span className="material-icons">delete_sweep</span>
