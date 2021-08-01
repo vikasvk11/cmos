@@ -39,6 +39,10 @@ export default function App() {
    
   },[isLogin])   
 
+  useEffect( () => {
+    console.log("Updating....", playlistState)
+  },[playlistState]);
+
   return (
     <>
     <ScrollToTop />

@@ -93,29 +93,26 @@ export function PlaylistProvider({ children }) {
         };
 
       case RESET_STATE:
-
-      return {
-        videoData: [],
-        liked: [],
-        playlist: [],
-        history: []
-      }
+        console.log("resetting....")
+        return {
+          ...state,
+          liked: [],
+          playlist: [],
+          history: []
+        };
 
       default:
-        return state;
+        console.log("default")
+        return {
+          ...state
+        };
     }
   }
 
   const [playlistState, playlistDispatch] = useReducer(playlistReducer, {
     videoData: [],
     liked: [],
-    playlist: [
-      {
-        _id: v4(),
-        name: "Playlist 1",
-        videos: ["QHDhSidFhcQ", "e6HZPmSlS5c"]
-      }
-    ],
+    playlist: [],
     history: []
   });
 

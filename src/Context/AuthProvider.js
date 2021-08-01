@@ -16,12 +16,9 @@ export function AuthProvider({children}) {
          );
           if(response.data.success === true) {
             const token = response.data.token;
-            setIsLogin(true);
             setToken(token);
-            localStorage?.setItem(
-                "login",
-                JSON.stringify({ isLogin: true, token })
-              );
+            localStorage?.setItem("login", JSON.stringify({ isLogin: true, token }));
+            setIsLogin(true);
           }
         } catch (error) {
           throw(error);

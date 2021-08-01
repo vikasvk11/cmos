@@ -10,13 +10,13 @@ export function Logout() {
 
     const {isLogin, setIsLogin} = useLogin();
     const navigate = useNavigate();
-    const {playlistDispatch} = usePlaylist();
+    const {playlistDispatch, playlistState} = usePlaylist();
 
     function logoutHandler() {
         localStorage?.removeItem("login");
-        setIsLogin(false);
+        setIsLogin(false)
         navigate("/");
-        playlistDispatch({type: RESET_STATE});
+        setTimeout(() => playlistDispatch({type: RESET_STATE}) , 1000)
     }
 
     return (

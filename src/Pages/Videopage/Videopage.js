@@ -18,7 +18,7 @@ export function Videopage() {
     const [modalState, setModalState] = useState(false);
     const [descriptionState, setDescriptionState] = useState(false);
     const {videoData, liked, playlist} = playlistState;
-    const { token } = useLogin();
+    const { token, isLogin } = useLogin();
     const {_id, title, views, duration, channelName, description} = videoData.find((item) => item._id === videoId);
     const nextVideos = videoData
         .filter(item => item._id !== videoId)
@@ -60,6 +60,9 @@ export function Videopage() {
 
     function likeBtnHandler(_id) {
         const data = { videoId: _id };
+        if(!isLogin) {
+            return navigate("/account");
+        }
         if(!liked.includes(_id)) {
              (async function addLiked() {
                 try {
@@ -169,24 +172,24 @@ export function Videopage() {
 
     useEffect(() => {
         // window.scrollTo(0, 0);
-
-        (async function addHistory() {
-            try {
-                const data = { videoIdHistory: videoId };
-                const decoded = await jwt.decode(token);
-                const response = await axios.post(`https://video-library-be.vikasvk1997.repl.co/history/${decoded.userId}`, data,
-                {
-                    headers: {
-                        authorization: token
-                      }
-                });
-                playlistDispatch({type: "ADD_TO_HISTORY", payload: videoId});
-            }
-            catch(err) {
-                console.log(err);
-            }
-        })()
-
+        if(isLogin) {
+            (async function addHistory() {
+                try {
+                    const data = { videoIdHistory: videoId };
+                    const decoded = await jwt.decode(token);
+                    const response = await axios.post(`https://video-library-be.vikasvk1997.repl.co/history/${decoded.userId}`, data,
+                    {
+                        headers: {
+                            authorization: token
+                        }
+                    });
+                    playlistDispatch({type: "ADD_TO_HISTORY", payload: videoId});
+                }
+                catch(err) {
+                    console.log(err);
+                }
+            })()
+        }
         shuffleArray(nextVideos);
     }, [videoId])
 
@@ -224,7 +227,12 @@ export function Videopage() {
                         </button>
                         <button
                             className="btn-primary-outline videopage-btn"
-                            onClick={() => setModalState(true)}>
+                            onClick={() => {
+                                if(!isLogin) {
+                                    return navigate("/account");
+                                }
+                                setModalState(true);
+                                }}>
                             <span className="material-icons f5">playlist_add</span>
                         </button>
                     </div>
