@@ -28,7 +28,8 @@ export function History() {
                             videoTitle={item.title}
                             views={item.views} 
                             duration={item.duration} 
-                            channelName={item.channelName}/>
+                            channelName={item.channelName}
+                            menu={true}/>
                             );
                         }
                         )}

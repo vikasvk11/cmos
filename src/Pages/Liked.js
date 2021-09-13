@@ -17,24 +17,25 @@ export function Liked() {
     <div className="playlist-page-container">
       <MenuList/>
       <div className="playlist-page">
-      <h1 className="liked-header">Liked Videos</h1>
-      <ul className="video-list-container  liked">
-        {[...liked.map((item) => videoData.find((el) => el._id === item))].map(
-          (item, index) => {
-            return (
-              <Thumbnail 
-              key={item._id} 
-              videoId={item._id} 
-              videoTitle={item.title}
-              views={item.views} 
-              duration={item.duration} 
-              channelName={item.channelName} />
-            );
-          }
-        )}
-      </ul>
+        <h1 className="liked-header">Liked Videos</h1>
+        <ul className="video-list-container  liked">
+          {[...liked.map((item) => videoData.find((el) => el._id === item))].map(
+            (item, index) => {
+              return (
+                <Thumbnail 
+                key={item._id} 
+                videoId={item._id} 
+                videoTitle={item.title}
+                views={item.views} 
+                duration={item.duration} 
+                channelName={item.channelName}
+                menu={true} />
+              );
+            }
+          )}
+        </ul>
       </div>
-      </div>
+    </div>
     </>
   );
 }

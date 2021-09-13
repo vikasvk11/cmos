@@ -1,10 +1,14 @@
 import "../styles.css";
 import "../Pages/Home/home.css"
 import {useNavigate} from "react-router-dom";
+import { Videomenu } from "./Videomenu";
 
-export function Thumbnail({ videoId, videoTitle, views, duration, channelName }) {
+export function Thumbnail({ videoId, videoTitle, views, duration, channelName, menu }) {
 
     const navigate = useNavigate();
+
+
+
     return (
         <>
         <li
@@ -21,14 +25,15 @@ export function Thumbnail({ videoId, videoTitle, views, duration, channelName })
                   {duration}
                 </div>
               </div>
-              <h1
-                className="video-header"
-              >
-                {videoTitle}
-              </h1>
-              <p className="thumbnail_details">
-                {channelName} | {views} views
-              </p>
+              <div className="thumbnail-content">
+                <div>
+                  <h1 className="video-header">{videoTitle}</h1>
+                  <p className="thumbnail_details">
+                    {channelName} | {views} views
+                  </p>
+                </div>
+                <Videomenu menuVisible = {menu}/>
+              </div>
             </div>
           </li>
         </>

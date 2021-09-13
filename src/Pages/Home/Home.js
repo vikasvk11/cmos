@@ -47,7 +47,8 @@ export function Home() {
             videoTitle={item.title} 
             views={item.views} 
             duration={item.duration} 
-            channelName={item.channelName}/>
+            channelName={item.channelName}
+            menu={false}/>
           );
         })}
         {error && <p>{error}</p>}

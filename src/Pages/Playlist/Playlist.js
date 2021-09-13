@@ -67,6 +67,7 @@ export function Playlist() {
                     views={el.views} 
                     duration={el.duration} 
                     channelName={el.channelName}
+                    menu={true}
                     />
                   );
                 }
