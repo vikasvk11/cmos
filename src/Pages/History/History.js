@@ -29,7 +29,7 @@ export function History() {
                             views={item.views} 
                             duration={item.duration} 
                             channelName={item.channelName}
-                            menu={true}/>
+                            menu={false}/>
                             );
                         }
                         )}

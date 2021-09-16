@@ -72,7 +72,7 @@ export function Videopage() {
                     {
                         headers: {
                             authorization: token
-                          }
+                        }
                     });
                 }
                 catch(err) {

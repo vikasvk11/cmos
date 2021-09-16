@@ -1,5 +1,7 @@
 import { usePlaylist } from "../Context/PlaylistProvider";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import jwt from "jsonwebtoken";
 import "../styles.css";
 import "./Home/home.css";
 import "./Playlist/playlist.css";
@@ -12,6 +14,24 @@ export function Liked() {
 
   const { videoData, liked } = playlistState;
 
+  async function removeLiked(Id, token) {
+    const data = { videoId: Id };
+    try {
+        playlistDispatch({type: "REMOVE_FROM_LIKED", payload: Id})
+        const decoded = await jwt.decode(token);
+        const response = await axios.delete(`https://video-library-be.vikasvk1997.repl.co/liked/${decoded.userId}`, 
+        {
+            headers: {
+                authorization: token
+            },
+            data : data
+        });
+    }
+    catch(err) {
+        console.log(err);
+        playlistDispatch({type: "ADD_TO_LIKED", payload: Id})
+    }
+}
   return (
     <>
     <div className="playlist-page-container">
@@ -29,7 +49,9 @@ export function Liked() {
                 views={item.views} 
                 duration={item.duration} 
                 channelName={item.channelName}
-                menu={true} />
+                menu={true} 
+                deleteFunction={removeLiked}
+                />
               );
             }
           )}

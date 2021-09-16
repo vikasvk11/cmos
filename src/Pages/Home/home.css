@@ -51,7 +51,7 @@
   .menu-popout {
     position: absolute;
     right: 0;
-    background-color: #1f1f20;
+    background-color: #333335;
     padding: 0.25rem 0.5rem;
     text-align: center;
     box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.664);
