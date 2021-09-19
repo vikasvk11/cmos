@@ -32,6 +32,10 @@
     color: #3ca1cd;
   }
 
+  .playlist-page {
+    padding-bottom: 2rem;
+  }
+
   @media only screen and (min-width: 992px) {
 
   .playlist-page-container {

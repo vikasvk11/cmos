@@ -19,7 +19,6 @@ export function Playlist() {
   function deletePlaylist(_id) {
 
     (async function deleteWholePlaylist() {
-
       try {
             const decoded = await jwt.decode(token);
             const response = await axios.delete(`https://video-library-be.vikasvk1997.repl.co/playlist/${decoded.userId}/${_id}`, 
@@ -32,8 +31,41 @@ export function Playlist() {
       } catch(err) {
           console.log(err);
       }
+    })()
+  }
 
-  })()
+  async function removeFromPlaylist(playlistId, videoId, index, videos, token) {
+    try {
+      if(videos.length === 1) {
+        deletePlaylist(playlistId);
+      } else {
+        const decoded = await jwt.decode(token);
+        const response = await axios.delete(`https://video-library-be.vikasvk1997.repl.co/playlist/${decoded.userId}/${playlistId}/${videoId}`,
+        {
+            headers: {
+                authorization: token
+            }
+        })
+        playlistDispatch({
+          type: "REMOVE_FROM_PLAYLIST",
+          payload: {
+              playlistId: playlistId,
+              videoId: videoId,
+              index: index
+          }
+      })
+     }
+    } catch(err) {
+        console.log(err);
+        playlistDispatch({
+            type: "ADD_TO_PLAYLIST",
+            payload: {
+              playlistId: playlistId,
+              videoId: videoId,
+              index: index
+            }
+        })
+    }
   }
 
   return (
@@ -42,7 +74,7 @@ export function Playlist() {
       <MenuList/>
       <div className="playlist-page">
       <h1 className="liked-header">Playlist Videos</h1>
-      {playlist.map(({ _id, name, videos }) => {
+      {playlist.map(({ _id, name, videos }, index) => {
         return (
           <div key={_id}>
             <div className="playlist-head">
@@ -68,6 +100,7 @@ export function Playlist() {
                     duration={el.duration} 
                     channelName={el.channelName}
                     menu={true}
+                    deleteFunction={() => removeFromPlaylist(_id, el._id, index, videos, token)}
                     />
                   );
                 }

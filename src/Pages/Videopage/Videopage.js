@@ -42,7 +42,8 @@ export function Videopage() {
                             authorization: token
                           }
                     });
-                    playlistDispatch({type: "CREATE_PLAYLIST", payload: input});
+                    playlistDispatch({type: "CREATE_PLAYLIST", payload: { playlistId: response.data.userObj.playlist.pop()._id, 
+                        playlistName: input}});
                 }
                 catch(err) {
                     console.log(err);

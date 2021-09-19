@@ -1,4 +1,5 @@
 import { createContext, useReducer, useContext } from "react";
+import { act } from "react-dom/test-utils";
 import { v4 } from "uuid";
 import {
         ADD_ALL_VIDEO_DATA,
@@ -41,7 +42,7 @@ export function PlaylistProvider({ children }) {
           ...state,
           playlist: [
             ...state.playlist,
-            { _id: v4(), name: action.payload, videos: [] }
+            { _id: action.payload.playlistId, name: action.payload.playlistName, videos: [] }
           ]
         };
 
@@ -66,11 +67,11 @@ export function PlaylistProvider({ children }) {
 
       case REMOVE_FROM_PLAYLIST:
 
-        let videoIndex = state.playlist[action.payload.index].videos.findIndex(item => item === action.payload.videoId);
-
-        if(videoIndex !== -1) {
-          state.playlist[action.payload.index].videos.splice(videoIndex, videoIndex + 1);
-        }
+        state.playlist.forEach(playlistObj => {
+          if(playlistObj._id === action.payload.playlistId) {
+            playlistObj.videos = playlistObj.videos.filter(id => id !== action.payload.videoId)
+          }
+        })
 
         return {
           ...state

@@ -14,16 +14,17 @@ export function Videomenu({menuVisible, Id, deleteFunction}) {
         e.stopPropagation();
     }
 
-    function deleteHandler() {
-        deleteFunction(Id, token)
+    function deleteHandler(e) {
+        deleteFunction();
         console.log(Id);
+        e.stopPropagation();
     }
 
     return (
         <>
             <div className={`${menuVisible ? "" : "menuvisibility"} videomenu`} onClick={(e) => menu(e)}>
                 <span className="material-icons light-grey">more_vert</span>
-                <div onClick={deleteHandler} className={`menu-popout ${state ? "" : "menuvisibility"}`}>Delete</div>
+                <div onClick={(e) => deleteHandler(e)} className={`menu-popout ${state ? "" : "menuvisibility"}`}>Delete</div>
             </div>
         </>
     );

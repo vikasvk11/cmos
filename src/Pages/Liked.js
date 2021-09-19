@@ -7,10 +7,12 @@ import "./Home/home.css";
 import "./Playlist/playlist.css";
 import { MenuList } from "../Components/MenuList";
 import { Thumbnail } from "../Components/Thumbnail";
+import { useLogin } from "../Context/AuthProvider";
 
 export function Liked() {
   const { playlistState, playlistDispatch } = usePlaylist();
   const navigate = useNavigate();
+  const { token } = useLogin();
 
   const { videoData, liked } = playlistState;
 
@@ -50,7 +52,7 @@ export function Liked() {
                 duration={item.duration} 
                 channelName={item.channelName}
                 menu={true} 
-                deleteFunction={removeLiked}
+                deleteFunction={() => removeLiked(item._id, token)}
                 />
               );
             }
