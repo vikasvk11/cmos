@@ -1,22 +1,26 @@
 import "../styles.css";
 import "../Pages/Home/home.css";
-import { useState } from "react";
-import { useLogin } from "../Context/AuthProvider";
+import { useEffect, useState } from "react";
 
-export function Videomenu({menuVisible, Id, deleteFunction}) {
+export function Videomenu({menuVisible, Id, deleteFunction, mainState, mainStateFunction}) {
 
     const [state, setState] = useState(false);
-    const { token } = useLogin();
 
     function menu(e) {
-        console.log("clicked.....");
         setState(prev => !prev);
+        mainStateFunction(Id);
+        
         e.stopPropagation();
     }
 
+    useEffect(() => {
+        if(mainState === Id) {
+            setState(true);
+        } else setState(false);
+    }, [mainState])
+
     function deleteHandler(e) {
         deleteFunction();
-        console.log(Id);
         e.stopPropagation();
     }
 

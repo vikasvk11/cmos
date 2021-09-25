@@ -8,9 +8,11 @@ import { Thumbnail } from "../../Components/Thumbnail";
 import axios from "axios";
 import jwt from "jsonwebtoken";
 import { useLogin } from "../../Context/AuthProvider";
+import { useState } from "react";
 
 export function Playlist() {
   const { playlistState, playlistDispatch } = usePlaylist();
+  const [mainState, setMainState] = useState();
   const navigate = useNavigate();
   const { token } = useLogin();
 
@@ -101,6 +103,8 @@ export function Playlist() {
                     channelName={el.channelName}
                     menu={true}
                     deleteFunction={() => removeFromPlaylist(_id, el._id, index, videos, token)}
+                    mainState={mainState}
+                    mainStateFunction={setMainState}
                     />
                   );
                 }

@@ -1,5 +1,4 @@
 import { usePlaylist } from "../Context/PlaylistProvider";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import jwt from "jsonwebtoken";
 import "../styles.css";
@@ -8,10 +7,11 @@ import "./Playlist/playlist.css";
 import { MenuList } from "../Components/MenuList";
 import { Thumbnail } from "../Components/Thumbnail";
 import { useLogin } from "../Context/AuthProvider";
+import { useState } from "react";
 
 export function Liked() {
+  const [mainState, setMainState] = useState();
   const { playlistState, playlistDispatch } = usePlaylist();
-  const navigate = useNavigate();
   const { token } = useLogin();
 
   const { videoData, liked } = playlistState;
@@ -42,7 +42,7 @@ export function Liked() {
         <h1 className="liked-header">Liked Videos</h1>
         <ul className="video-list-container  liked">
           {[...liked.map((item) => videoData.find((el) => el._id === item))].map(
-            (item, index) => {
+            (item) => {
               return (
                 <Thumbnail 
                 key={item._id} 
@@ -53,6 +53,8 @@ export function Liked() {
                 channelName={item.channelName}
                 menu={true} 
                 deleteFunction={() => removeLiked(item._id, token)}
+                mainState={mainState}
+                mainStateFunction={setMainState}
                 />
               );
             }

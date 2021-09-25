@@ -3,7 +3,7 @@ import "../Pages/Home/home.css"
 import {useNavigate} from "react-router-dom";
 import { Videomenu } from "./Videomenu";
 
-export function Thumbnail({ videoId, videoTitle, views, duration, channelName, menu, deleteFunction }) {
+export function Thumbnail({ videoId, videoTitle, views, duration, channelName, menu, deleteFunction, mainState, mainStateFunction}) {
 
     const navigate = useNavigate();
 
@@ -30,7 +30,13 @@ export function Thumbnail({ videoId, videoTitle, views, duration, channelName, m
                     {channelName} | {views} views
                   </p>
                 </div>
-                <Videomenu menuVisible = {menu} Id = {videoId} deleteFunction={deleteFunction}/>
+                <Videomenu 
+                menuVisible={menu} 
+                Id={videoId} 
+                deleteFunction={deleteFunction}
+                mainState={mainState}
+                mainStateFunction={mainStateFunction}
+                />
               </div>
             </div>
           </li>
