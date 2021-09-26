@@ -64,6 +64,16 @@ li {
 
 .nav-list-item {
   cursor: pointer;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0;
+}
+
+.active-item {
+  border-bottom: solid 2px rgb(192, 192, 192);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .btn-primary-outline:hover {
@@ -77,16 +87,18 @@ li {
   bottom: 0;
   width: 100%;
   background-color: #242526;
-  padding: 0.5rem;
+  padding: 0 0;
   border-top: 0.5px solid rgb(100, 100, 100);
 }
 
 .thumb_up{
   font-size: 1.25rem;
+  padding: 0.1rem;
 }
 
 .history-icon {
-  font-size: 1.4rem;
+  font-size: 1.25rem;
+  padding: 0.1rem;
 }
 
 .main-nav-search {

@@ -9,7 +9,6 @@ export function Videomenu({menuVisible, Id, deleteFunction, mainState, mainState
     function menu(e) {
         setState(prev => !prev);
         mainStateFunction(Id);
-        
         e.stopPropagation();
     }
 
