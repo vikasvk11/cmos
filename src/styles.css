@@ -64,6 +64,9 @@ li {
 
 .nav-list-item {
   cursor: pointer;
+}
+
+.pivot-bar-item {
   width: 100%;
   display: flex;
   align-items: center;
