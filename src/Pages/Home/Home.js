@@ -12,7 +12,7 @@ export function Home() {
   const [loader, setLoader] = useState(false);
   const [data, setData] = useState(null);
   const [error, setError] = useState(false);
-  const {playlistState, playlistDispatch} = usePlaylist();
+  const { playlistDispatch } = usePlaylist();
 
   useEffect(() => {
     (async function getData() {
@@ -21,6 +21,7 @@ export function Home() {
         const response = await axios.get("https://video-library-be.vikasvk1997.repl.co/videos")
         setData(response.data.videoData);
         playlistDispatch({type: ADD_ALL_VIDEO_DATA, payload: response.data.videoData})
+        console.log("Fetching home data...")
       } catch (error) {
         console.log("error", error);
         setError("Data fetch failed");

@@ -93,6 +93,10 @@
     background-color: rgb(104, 104, 104);
 }
 
+.btn-submit:focus {
+    outline-style: solid;
+}
+
 .password-comment {
     font-size: 0.75rem;
     color: #cd3c3c;

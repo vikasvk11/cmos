@@ -20,7 +20,7 @@ export function Liked() {
     const data = { videoId: Id };
     try {
         playlistDispatch({type: "REMOVE_FROM_LIKED", payload: Id})
-        const decoded = await jwt.decode(token);
+        const decoded = jwt.decode(token);
         const response = await axios.delete(`https://video-library-be.vikasvk1997.repl.co/liked/${decoded.userId}`, 
         {
             headers: {
@@ -41,7 +41,7 @@ export function Liked() {
       <div className="playlist-page">
         <h1 className="liked-header">Liked Videos</h1>
         <ul className="video-list-container  liked">
-          {[...liked.map((item) => videoData.find((el) => el._id === item))].map(
+          {liked && [...liked.map((item) => videoData.find((el) => el._id === item))].map(
             (item) => {
               return (
                 <Thumbnail 

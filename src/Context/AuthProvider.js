@@ -23,7 +23,7 @@ export function AuthProvider({children}) {
         } catch (error) {
           throw(error);
         }
-      }
+    }
 
     return (
         <AuthContext.Provider value={{isLogin, loginUserWithCredentials, setIsLogin, token}}>
