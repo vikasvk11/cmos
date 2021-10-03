@@ -31,7 +31,6 @@ export default function App() {
         const response2 = await axios.get("https://video-library-be.vikasvk1997.repl.co/videos")
         playlistDispatch({type: ADD_ALL_VIDEO_DATA, payload: response2.data.videoData})
         playlistDispatch({type: ADD_USER_DATA, payload: response.data.userObj})
-        console.log("getting user data....")
       }catch (err) {
         console.log(err, "app auth err");
         localStorage?.removeItem("login");

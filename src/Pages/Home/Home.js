@@ -21,7 +21,6 @@ export function Home() {
         const response = await axios.get("https://video-library-be.vikasvk1997.repl.co/videos")
         setData(response.data.videoData);
         playlistDispatch({type: ADD_ALL_VIDEO_DATA, payload: response.data.videoData})
-        console.log("Fetching home data...")
       } catch (error) {
         console.log("error", error);
         setError("Data fetch failed");
