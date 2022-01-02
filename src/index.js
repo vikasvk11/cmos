@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import { PlaylistProvider } from "./Context/PlaylistProvider";
 import { AuthProvider } from "./Context/AuthProvider";
+import { SnackbarProvider } from "./Context/SnackbarProvider";  
 
 import App from "./App";
 
@@ -11,9 +12,11 @@ ReactDOM.render(
   <StrictMode>
     <AuthProvider>
       <PlaylistProvider>
-        <Router>
-          <App />
-        </Router>
+        <SnackbarProvider>
+          <Router>
+            <App />
+          </Router>
+        </SnackbarProvider>
       </PlaylistProvider>
     </AuthProvider>
   </StrictMode>,

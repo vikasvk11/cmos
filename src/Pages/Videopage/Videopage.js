@@ -8,10 +8,12 @@ import {Thumbnail} from "../../Components/Thumbnail";
 import axios from "axios";
 import jwt from "jsonwebtoken";
 import { useLogin } from "../../Context/AuthProvider";
+import { useSnackbar } from "../../Context/SnackbarProvider.js";
 
 
 export function Videopage() {
     const navigate = useNavigate();
+    const { handleClick, handleClose, handleExited, showSnackbar, messageInfo } = useSnackbar();
     const {videoId} = useParams();
     const [input, setInputState] = useState("");
     const {playlistState, playlistDispatch} = usePlaylist();
@@ -44,6 +46,7 @@ export function Videopage() {
                     });
                     playlistDispatch({type: "CREATE_PLAYLIST", payload: { playlistId: response.data.userObj.playlist.pop()._id, 
                         playlistName: input}});
+                    handleClick("Added to playlist");
                 }
                 catch(err) {
                     console.log(err);
@@ -124,6 +127,7 @@ export function Videopage() {
                                 authorization: token
                             }
                         });
+                        handleClick("Added to playlist");
                 }
                 catch(err) {
                     console.log(err);
@@ -156,6 +160,7 @@ export function Videopage() {
                             authorization: token
                         }
                     })
+                    handleClick("Removed from playlist");
                 } catch(err) {
                     console.log(err);
                     playlistDispatch({
