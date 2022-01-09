@@ -14,7 +14,7 @@ export function NavBar() {
             <input className="main-nav-search" placeholder="Search">
             </input>
             <ul className="main-nav-list_1 flex-end">
-                <li onClick={() => navigate("/loo")}
+                <li onClick={() => navigate("/")}
                 className="nav-list-item">
                     <span className="material-icons">
                         search
