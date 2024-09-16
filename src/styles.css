@@ -1,0 +1,147 @@
+@import url("https://alphacss.netlify.app/alpha.css");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #e4e6eb;
+}
+
+body {
+  background-color: #18191a;
+}
+
+.App {
+  font-family: sans-serif;
+  /* text-align: center; */
+  width: 100%;
+  height: auto;
+}
+
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.6rem;
+  background-color: #242526;
+  position: fixed;
+  top:0;
+  z-index: 1;
+  width: 100%;
+  border-bottom: 0.5px solid rgb(100, 100, 100);
+}
+
+.main-nav-header_1 {
+  color: #3ca1cd;
+  flex: 1 1;
+  cursor: pointer;
+}
+
+.logo {
+  width: 0.5rem;
+  display: block;
+}
+
+.main-nav-list_1, .pivot-list {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex: 1 1;
+}
+
+.flex-end {
+  justify-content: flex-end;
+  gap: 30px;
+}
+
+.main-nav-list_1 > li {
+  position: relative;
+}
+
+li {
+  list-style: none;
+}
+
+.nav-list-item {
+  cursor: pointer;
+}
+
+.pivot-bar-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0;
+}
+
+.active-item {
+  border-top: solid 2px rgb(192, 192, 192);
+  background-color: rgba(255, 255, 255, 0.07);
+}
+
+.btn-primary-outline:hover {
+  color: #3ca1cd;
+  background-color: #3ca2cd21;
+}
+
+.pivotbar-container {
+  position: fixed;
+  z-index: 1;
+  bottom: 0;
+  width: 100%;
+  background-color: #242526;
+  padding: 0 0;
+  border-top: 0.5px solid rgb(100, 100, 100);
+}
+
+.thumb_up{
+  font-size: 1.25rem;
+  padding: 0.1rem;
+}
+
+.history-icon {
+  font-size: 1.25rem;
+  padding: 0.1rem;
+}
+
+.main-nav-search {
+  background-color: #3c3d3f;
+  border: 1px solid rgb(100, 100, 100);
+  border-radius: 1rem;
+  padding: 0.4rem;
+  flex: 1 1;
+  display: none;
+}
+
+.main-nav-search:focus {
+  outline: 1px solid rgb(153, 153, 153);
+}
+
+.mg_1 {
+  margin: 1rem;
+}
+
+@media only screen and (min-width: 992px) {
+
+  .pivotbar-container {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 650px) {
+  .main-nav-search {
+    display: block;
+  }
+
+  .main-nav-list_1 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0;
+  }
+
+  .nav-list-item {
+    padding-left: 2rem;
+  }
+  
+}

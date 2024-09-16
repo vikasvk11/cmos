@@ -1,0 +1,218 @@
+.video-list-container {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin: 4rem 0.5rem 4rem 0.5rem;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  
+  .video-list-item {
+    width: 375px;
+    cursor: pointer;
+  }
+
+  .thumbnail-container, .container16x9 {
+    position: relative;
+  }
+
+  .thumbnail_video-duration {
+    position: absolute;
+    right: 1%;
+    bottom: 2.5%;
+    background-color: #0c1f27e0;
+    padding: 0.1rem 0.21rem;
+    font-size: 0.75rem;
+  }
+
+  .thumbnail-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.7rem;
+  }
+
+  .light-grey {
+    color:rgb(92, 92, 92);
+  }
+
+  .light-grey:hover {
+    color:rgb(173, 173, 173);
+  }
+
+  .menuvisibility {
+    display: none;
+  }
+
+  .videomenu {
+    position: relative;
+  }
+
+  .menu-popout {
+    position: absolute;
+    right: 0;
+    background-color: #333335;
+    padding: 0.25rem 0.5rem;
+    text-align: center;
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.664);
+    z-index: 2;
+  }
+  /* .video-list-item > div{
+    min-width: 100%;
+    min-height: 100%;
+  } */
+
+  .video-list-item > div > h1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+  }
+  
+  .container16x9 {
+    position: relative;
+    padding-top: 56.25%;
+    min-width: 20rem;
+  }
+  
+  .responsive-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .video-header {
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .thumbnail_details {
+    font-size: 0.8rem;
+    color: #dadadab2;
+  }
+
+  .menu-container {
+    display: none;
+  }
+
+  .video-list-item:hover {
+    background-color: #242526;
+  }
+
+  @keyframes ldio-73f28sgtk6j-1 {
+    0% { top: 50.592000000000006px; height: 102.816px }
+    50% { top: 65.28px; height: 73.44px }
+    100% { top: 65.28px; height: 73.44px }
+  }
+  @keyframes ldio-73f28sgtk6j-2 {
+    0% { top: 54.264px; height: 95.472px }
+    50% { top: 65.28px; height: 73.44px }
+    100% { top: 65.28px; height: 73.44px }
+  }
+  @keyframes ldio-73f28sgtk6j-3 {
+    0% { top: 57.93600000000001px; height: 88.12799999999999px }
+    50% { top: 65.28px; height: 73.44px }
+    100% { top: 65.28px; height: 73.44px }
+  }
+  .ldio-73f28sgtk6j div { position: absolute; width: 14.280000000000001px }.ldio-73f28sgtk6j div:nth-child(1) {
+    left: 43.86px;
+    background: #333333;
+    animation: ldio-73f28sgtk6j-1 0.9615384615384615s cubic-bezier(0,0.5,0.5,1) infinite;
+    animation-delay: -0.19230769230769232s
+  }
+  .ldio-73f28sgtk6j div:nth-child(2) {
+    left: 94.86px;
+    background: #474747;
+    animation: ldio-73f28sgtk6j-2 0.9615384615384615s cubic-bezier(0,0.5,0.5,1) infinite;
+    animation-delay: -0.09615384615384616s
+  }
+  .ldio-73f28sgtk6j div:nth-child(3) {
+    left: 145.86px;
+    background: #707070;
+    animation: ldio-73f28sgtk6j-3 0.9615384615384615s cubic-bezier(0,0.5,0.5,1) infinite;
+    animation-delay: undefineds
+  }
+  
+  .loadingio-spinner-pulse-t56omb8t4b {
+    width: 204px;
+    height: 204px;
+    display: inline-block;
+    overflow: hidden;
+    background: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .ldio-73f28sgtk6j {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform: translateZ(0) scale(0.5);
+    backface-visibility: hidden;
+    transform-origin: -0.5 -0.5; /* see note above */
+  }
+  .ldio-73f28sgtk6j div { box-sizing: content-box; }
+  
+  @media only screen and (min-width: 992px) {
+
+    .menu-container {
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      padding-top: 4rem ;
+      flex: 18%;
+      gap: 5px;
+      background-color: #242526;
+    }
+
+    .home-container {
+      display: flex;
+      height: 100%;
+    }
+
+    .menu-list-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: flex-start;
+      cursor: pointer;
+      padding: 0.5rem 1rem;
+    }
+
+    .menu-list-item:hover {
+      background-color: rgb(61, 61, 61);
+    }
+
+    .video-list-container {
+      flex: 82%;
+      margin-bottom: 0rem;
+      justify-content: flex-start;
+    }
+
+    .video-list-item {
+      max-width: 14rem;
+      cursor: pointer;
+    }
+
+    .container16x9 {
+      position: relative;
+      padding-top: 56.25%;
+      min-width: 14rem;
+    }
+
+    .video-header {
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .thumbnail_details {
+      font-size: 0.7rem;
+      margin: 0.2rem 0;
+    }
+    
+  }

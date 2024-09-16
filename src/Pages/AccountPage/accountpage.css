@@ -1,0 +1,108 @@
+.accountpage-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 4rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.logout-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 5rem 1rem;
+    gap: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.accountpage-actions_btns {
+    flex: 1 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-primary-outline.accountpage-btn {
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid rgb(80, 80, 80);
+    font-size: 0.9rem;
+    /* background-color: #3ca2cd1f; */
+    padding: 0.4rem 0.6rem;
+    color:rgb(184, 184, 184);
+}
+
+.btn-primary-outline:hover {
+    background-color: transparent;
+}
+
+.btn-primary-outline:focus {
+    background-color: transparent;
+}
+
+.btn-primary-outline.active {
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #3ca1cd;
+    font-size: 0.9rem;
+    background-color: #3ca2cd1f;
+    padding: 0.4rem 0.6rem;
+    color: #3ca1cd;
+}
+
+.input-bar {
+    background-color: rgb(77, 77, 77);
+}
+
+.form-header {
+    font-size: 1.2rem;
+}
+
+
+.form-container {
+    border: none;
+    background-color: rgb(37, 37, 37);
+    border-radius: 0;
+    display: none;
+}
+
+.visible {
+    display: flex;
+}
+
+.input-container > label {
+    color: #ADADAD;
+    font-weight: 600;
+}
+
+.input-container > input {
+    border: none;
+    margin: 0.2rem 0;
+}
+
+.input-container > input:focus {
+    background-color: rgb(29, 29, 29);
+}
+
+.btn-submit {
+    background-color: #3286aa;
+}
+
+.btn-submit:disabled {
+    background-color: rgb(104, 104, 104);
+}
+
+.btn-submit:focus {
+    outline-style: solid;
+}
+
+.password-comment {
+    font-size: 0.75rem;
+    color: #cd3c3c;
+}
+
+/* @media only screen and (min-width: 992px) {
+
+
+} */
